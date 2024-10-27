@@ -3,6 +3,8 @@
 // source: ServerInterface.proto
 // Protobuf Java Version: 4.28.3
 
+package wmfx;
+
 public final class ServerInterfaceOuterClass {
   private ServerInterfaceOuterClass() {}
   static {
@@ -66,15 +68,15 @@ public final class ServerInterfaceOuterClass {
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ServerInterfaceOuterClass.internal_static_ClientRegistration_descriptor;
+      return wmfx.ServerInterfaceOuterClass.internal_static_ClientRegistration_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ServerInterfaceOuterClass.internal_static_ClientRegistration_fieldAccessorTable
+      return wmfx.ServerInterfaceOuterClass.internal_static_ClientRegistration_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ServerInterfaceOuterClass.ClientRegistration.class, ServerInterfaceOuterClass.ClientRegistration.Builder.class);
+              wmfx.ServerInterfaceOuterClass.ClientRegistration.class, wmfx.ServerInterfaceOuterClass.ClientRegistration.Builder.class);
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 1;
@@ -155,10 +157,10 @@ public final class ServerInterfaceOuterClass {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ServerInterfaceOuterClass.ClientRegistration)) {
+      if (!(obj instanceof wmfx.ServerInterfaceOuterClass.ClientRegistration)) {
         return super.equals(obj);
       }
-      ServerInterfaceOuterClass.ClientRegistration other = (ServerInterfaceOuterClass.ClientRegistration) obj;
+      wmfx.ServerInterfaceOuterClass.ClientRegistration other = (wmfx.ServerInterfaceOuterClass.ClientRegistration) obj;
 
       if (!getClientId()
           .equals(other.getClientId())) return false;
@@ -180,44 +182,44 @@ public final class ServerInterfaceOuterClass {
       return hash;
     }
 
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(byte[] data)
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(java.io.InputStream input)
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -225,26 +227,26 @@ public final class ServerInterfaceOuterClass {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static ServerInterfaceOuterClass.ClientRegistration parseDelimitedFrom(java.io.InputStream input)
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static ServerInterfaceOuterClass.ClientRegistration parseDelimitedFrom(
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static ServerInterfaceOuterClass.ClientRegistration parseFrom(
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -257,7 +259,7 @@ public final class ServerInterfaceOuterClass {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ServerInterfaceOuterClass.ClientRegistration prototype) {
+    public static Builder newBuilder(wmfx.ServerInterfaceOuterClass.ClientRegistration prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -278,21 +280,21 @@ public final class ServerInterfaceOuterClass {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:ClientRegistration)
-        ServerInterfaceOuterClass.ClientRegistrationOrBuilder {
+        wmfx.ServerInterfaceOuterClass.ClientRegistrationOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ServerInterfaceOuterClass.internal_static_ClientRegistration_descriptor;
+        return wmfx.ServerInterfaceOuterClass.internal_static_ClientRegistration_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ServerInterfaceOuterClass.internal_static_ClientRegistration_fieldAccessorTable
+        return wmfx.ServerInterfaceOuterClass.internal_static_ClientRegistration_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ServerInterfaceOuterClass.ClientRegistration.class, ServerInterfaceOuterClass.ClientRegistration.Builder.class);
+                wmfx.ServerInterfaceOuterClass.ClientRegistration.class, wmfx.ServerInterfaceOuterClass.ClientRegistration.Builder.class);
       }
 
-      // Construct using ServerInterfaceOuterClass.ClientRegistration.newBuilder()
+      // Construct using wmfx.ServerInterfaceOuterClass.ClientRegistration.newBuilder()
       private Builder() {
 
       }
@@ -313,17 +315,17 @@ public final class ServerInterfaceOuterClass {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ServerInterfaceOuterClass.internal_static_ClientRegistration_descriptor;
+        return wmfx.ServerInterfaceOuterClass.internal_static_ClientRegistration_descriptor;
       }
 
       @java.lang.Override
-      public ServerInterfaceOuterClass.ClientRegistration getDefaultInstanceForType() {
-        return ServerInterfaceOuterClass.ClientRegistration.getDefaultInstance();
+      public wmfx.ServerInterfaceOuterClass.ClientRegistration getDefaultInstanceForType() {
+        return wmfx.ServerInterfaceOuterClass.ClientRegistration.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ServerInterfaceOuterClass.ClientRegistration build() {
-        ServerInterfaceOuterClass.ClientRegistration result = buildPartial();
+      public wmfx.ServerInterfaceOuterClass.ClientRegistration build() {
+        wmfx.ServerInterfaceOuterClass.ClientRegistration result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -331,14 +333,14 @@ public final class ServerInterfaceOuterClass {
       }
 
       @java.lang.Override
-      public ServerInterfaceOuterClass.ClientRegistration buildPartial() {
-        ServerInterfaceOuterClass.ClientRegistration result = new ServerInterfaceOuterClass.ClientRegistration(this);
+      public wmfx.ServerInterfaceOuterClass.ClientRegistration buildPartial() {
+        wmfx.ServerInterfaceOuterClass.ClientRegistration result = new wmfx.ServerInterfaceOuterClass.ClientRegistration(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(ServerInterfaceOuterClass.ClientRegistration result) {
+      private void buildPartial0(wmfx.ServerInterfaceOuterClass.ClientRegistration result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.clientId_ = clientId_;
@@ -347,16 +349,16 @@ public final class ServerInterfaceOuterClass {
 
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ServerInterfaceOuterClass.ClientRegistration) {
-          return mergeFrom((ServerInterfaceOuterClass.ClientRegistration)other);
+        if (other instanceof wmfx.ServerInterfaceOuterClass.ClientRegistration) {
+          return mergeFrom((wmfx.ServerInterfaceOuterClass.ClientRegistration)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ServerInterfaceOuterClass.ClientRegistration other) {
-        if (other == ServerInterfaceOuterClass.ClientRegistration.getDefaultInstance()) return this;
+      public Builder mergeFrom(wmfx.ServerInterfaceOuterClass.ClientRegistration other) {
+        if (other == wmfx.ServerInterfaceOuterClass.ClientRegistration.getDefaultInstance()) return this;
         if (!other.getClientId().isEmpty()) {
           clientId_ = other.clientId_;
           bitField0_ |= 0x00000001;
@@ -486,12 +488,12 @@ public final class ServerInterfaceOuterClass {
     }
 
     // @@protoc_insertion_point(class_scope:ClientRegistration)
-    private static final ServerInterfaceOuterClass.ClientRegistration DEFAULT_INSTANCE;
+    private static final wmfx.ServerInterfaceOuterClass.ClientRegistration DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ServerInterfaceOuterClass.ClientRegistration();
+      DEFAULT_INSTANCE = new wmfx.ServerInterfaceOuterClass.ClientRegistration();
     }
 
-    public static ServerInterfaceOuterClass.ClientRegistration getDefaultInstance() {
+    public static wmfx.ServerInterfaceOuterClass.ClientRegistration getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -527,7 +529,7 @@ public final class ServerInterfaceOuterClass {
     }
 
     @java.lang.Override
-    public ServerInterfaceOuterClass.ClientRegistration getDefaultInstanceForType() {
+    public wmfx.ServerInterfaceOuterClass.ClientRegistration getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -558,14 +560,14 @@ public final class ServerInterfaceOuterClass {
       "ntRequest\0222\n\nqueueReply\022\014.ServerReply\032\026." +
       "google.protobuf.Empty\022>\n\014dequeueReply\022\026." +
       "google.protobuf.Empty\032\026.google.protobuf." +
-      "Emptyb\006proto3"
+      "EmptyB\006\n\004wmfxb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.EmptyProto.getDescriptor(),
-          ClientRequestOuterClass.getDescriptor(),
-          ServerReplyOuterClass.getDescriptor(),
+          wmfx.ClientRequestOuterClass.getDescriptor(),
+          wmfx.ServerReplyOuterClass.getDescriptor(),
         });
     internal_static_ClientRegistration_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -575,8 +577,8 @@ public final class ServerInterfaceOuterClass {
         new java.lang.String[] { "ClientId", });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.EmptyProto.getDescriptor();
-    ClientRequestOuterClass.getDescriptor();
-    ServerReplyOuterClass.getDescriptor();
+    wmfx.ClientRequestOuterClass.getDescriptor();
+    wmfx.ServerReplyOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

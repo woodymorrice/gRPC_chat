@@ -1,4 +1,5 @@
-package wmfx;// import java.rmi.RemoteException;
+package wmfx;
+// import java.rmi.RemoteException;
 // import java.rmi.server.UnicastRemoteObject;
 // import java.util.concurrent.BlockingQueue;
 // import java.util.concurrent.LinkedBlockingQueue;
@@ -43,10 +44,10 @@ import com.google.protobuf.Empty;
 public class ClientObject extends ClientInterfaceGrpc.ClientInterfaceImplBase {
     // private BlockingQueue<ServerReply> serverReplies;
 
-    // public ClientObject() throws RemoteException {
+     public ClientObject() {
     //     super();
     //     serverReplies = new LinkedBlockingQueue<>();
-    // }
+     }
 
     public void queue(ServerReplyOuterClass.ServerReply message, StreamObserver<Empty> responseObserver) {}
 

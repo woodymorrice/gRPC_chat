@@ -182,14 +182,14 @@ class ServerRunner {
     }
 
     private int leaveRoom(String name) {
-        if (name.equals("")) {
+        if (name.isEmpty()) {
             return -1;
         }
         return 0;
     }
 
     private String listRooms() {
-        if (rooms.size() == 0) {
+        if (rooms.isEmpty()) {
             return "none";
         }
         StringBuilder sb = new StringBuilder();

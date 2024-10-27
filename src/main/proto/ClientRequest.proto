@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option java_package = "wmfx";
+
 enum RequestType {
     NONE = 0;
     CREATE = 1;

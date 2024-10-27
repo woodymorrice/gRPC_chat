@@ -86,7 +86,7 @@
                 <artifactId>protobuf-maven-plugin</artifactId>
                 <version>0.6.1</version>
                     <configuration>
-                        <outputDirectory>F:/453/gRPC/src/main/java/wmfx/</outputDirectory>
+                        <outputDirectory>F:/453/gRPC/src/main/java/</outputDirectory>
                         <clearOutputDirectory>false</clearOutputDirectory>
                         <!-- artifact to download binary protobuf compiler -->
                         <protocArtifact>com.google.protobuf:protoc:$1.64.0:exe:${os.detected.classifier}</protocArtifact>

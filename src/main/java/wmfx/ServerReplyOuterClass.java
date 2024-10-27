@@ -3,6 +3,8 @@
 // source: ServerReply.proto
 // Protobuf Java Version: 4.28.3
 
+package wmfx;
+
 public final class ServerReplyOuterClass {
   private ServerReplyOuterClass() {}
   static {
@@ -195,7 +197,7 @@ public final class ServerReplyOuterClass {
     }
     public static final com.google.protobuf.Descriptors.EnumDescriptor
         getDescriptor() {
-      return ServerReplyOuterClass.getDescriptor().getEnumTypes().get(0);
+      return wmfx.ServerReplyOuterClass.getDescriptor().getEnumTypes().get(0);
     }
 
     private static final ReplyType[] VALUES = values();
@@ -246,7 +248,7 @@ public final class ServerReplyOuterClass {
      * <code>.ReplyType type = 2;</code>
      * @return The type.
      */
-    ServerReplyOuterClass.ReplyType getType();
+    wmfx.ServerReplyOuterClass.ReplyType getType();
 
     /**
      * <code>string body = 3;</code>
@@ -302,15 +304,15 @@ public final class ServerReplyOuterClass {
 
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ServerReplyOuterClass.internal_static_ServerReply_descriptor;
+      return wmfx.ServerReplyOuterClass.internal_static_ServerReply_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ServerReplyOuterClass.internal_static_ServerReply_fieldAccessorTable
+      return wmfx.ServerReplyOuterClass.internal_static_ServerReply_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ServerReplyOuterClass.ServerReply.class, ServerReplyOuterClass.ServerReply.Builder.class);
+              wmfx.ServerReplyOuterClass.ServerReply.class, wmfx.ServerReplyOuterClass.ServerReply.Builder.class);
     }
 
     public static final int CLIENTID_FIELD_NUMBER = 1;
@@ -365,9 +367,9 @@ public final class ServerReplyOuterClass {
      * <code>.ReplyType type = 2;</code>
      * @return The type.
      */
-    @java.lang.Override public ServerReplyOuterClass.ReplyType getType() {
-      ServerReplyOuterClass.ReplyType result = ServerReplyOuterClass.ReplyType.forNumber(type_);
-      return result == null ? ServerReplyOuterClass.ReplyType.UNRECOGNIZED : result;
+    @java.lang.Override public wmfx.ServerReplyOuterClass.ReplyType getType() {
+      wmfx.ServerReplyOuterClass.ReplyType result = wmfx.ServerReplyOuterClass.ReplyType.forNumber(type_);
+      return result == null ? wmfx.ServerReplyOuterClass.ReplyType.UNRECOGNIZED : result;
     }
 
     public static final int BODY_FIELD_NUMBER = 3;
@@ -465,7 +467,7 @@ public final class ServerReplyOuterClass {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientId_)) {
         com.google.protobuf.GeneratedMessage.writeString(output, 1, clientId_);
       }
-      if (type_ != ServerReplyOuterClass.ReplyType.CREATE_SUCCESS.getNumber()) {
+      if (type_ != wmfx.ServerReplyOuterClass.ReplyType.CREATE_SUCCESS.getNumber()) {
         output.writeEnum(2, type_);
       }
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(body_)) {
@@ -486,7 +488,7 @@ public final class ServerReplyOuterClass {
       if (!com.google.protobuf.GeneratedMessage.isStringEmpty(clientId_)) {
         size += com.google.protobuf.GeneratedMessage.computeStringSize(1, clientId_);
       }
-      if (type_ != ServerReplyOuterClass.ReplyType.CREATE_SUCCESS.getNumber()) {
+      if (type_ != wmfx.ServerReplyOuterClass.ReplyType.CREATE_SUCCESS.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, type_);
       }
@@ -506,10 +508,10 @@ public final class ServerReplyOuterClass {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof ServerReplyOuterClass.ServerReply)) {
+      if (!(obj instanceof wmfx.ServerReplyOuterClass.ServerReply)) {
         return super.equals(obj);
       }
-      ServerReplyOuterClass.ServerReply other = (ServerReplyOuterClass.ServerReply) obj;
+      wmfx.ServerReplyOuterClass.ServerReply other = (wmfx.ServerReplyOuterClass.ServerReply) obj;
 
       if (!getClientId()
           .equals(other.getClientId())) return false;
@@ -542,44 +544,44 @@ public final class ServerReplyOuterClass {
       return hash;
     }
 
-    public static ServerReplyOuterClass.ServerReply parseFrom(
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ServerReplyOuterClass.ServerReply parseFrom(
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ServerReplyOuterClass.ServerReply parseFrom(
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ServerReplyOuterClass.ServerReply parseFrom(
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ServerReplyOuterClass.ServerReply parseFrom(byte[] data)
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static ServerReplyOuterClass.ServerReply parseFrom(
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static ServerReplyOuterClass.ServerReply parseFrom(java.io.InputStream input)
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static ServerReplyOuterClass.ServerReply parseFrom(
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -587,26 +589,26 @@ public final class ServerReplyOuterClass {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static ServerReplyOuterClass.ServerReply parseDelimitedFrom(java.io.InputStream input)
+    public static wmfx.ServerReplyOuterClass.ServerReply parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static ServerReplyOuterClass.ServerReply parseDelimitedFrom(
+    public static wmfx.ServerReplyOuterClass.ServerReply parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static ServerReplyOuterClass.ServerReply parseFrom(
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessage
           .parseWithIOException(PARSER, input);
     }
-    public static ServerReplyOuterClass.ServerReply parseFrom(
+    public static wmfx.ServerReplyOuterClass.ServerReply parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -619,7 +621,7 @@ public final class ServerReplyOuterClass {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(ServerReplyOuterClass.ServerReply prototype) {
+    public static Builder newBuilder(wmfx.ServerReplyOuterClass.ServerReply prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -640,21 +642,21 @@ public final class ServerReplyOuterClass {
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder> implements
         // @@protoc_insertion_point(builder_implements:ServerReply)
-        ServerReplyOuterClass.ServerReplyOrBuilder {
+        wmfx.ServerReplyOuterClass.ServerReplyOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return ServerReplyOuterClass.internal_static_ServerReply_descriptor;
+        return wmfx.ServerReplyOuterClass.internal_static_ServerReply_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return ServerReplyOuterClass.internal_static_ServerReply_fieldAccessorTable
+        return wmfx.ServerReplyOuterClass.internal_static_ServerReply_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                ServerReplyOuterClass.ServerReply.class, ServerReplyOuterClass.ServerReply.Builder.class);
+                wmfx.ServerReplyOuterClass.ServerReply.class, wmfx.ServerReplyOuterClass.ServerReply.Builder.class);
       }
 
-      // Construct using ServerReplyOuterClass.ServerReply.newBuilder()
+      // Construct using wmfx.ServerReplyOuterClass.ServerReply.newBuilder()
       private Builder() {
 
       }
@@ -678,17 +680,17 @@ public final class ServerReplyOuterClass {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return ServerReplyOuterClass.internal_static_ServerReply_descriptor;
+        return wmfx.ServerReplyOuterClass.internal_static_ServerReply_descriptor;
       }
 
       @java.lang.Override
-      public ServerReplyOuterClass.ServerReply getDefaultInstanceForType() {
-        return ServerReplyOuterClass.ServerReply.getDefaultInstance();
+      public wmfx.ServerReplyOuterClass.ServerReply getDefaultInstanceForType() {
+        return wmfx.ServerReplyOuterClass.ServerReply.getDefaultInstance();
       }
 
       @java.lang.Override
-      public ServerReplyOuterClass.ServerReply build() {
-        ServerReplyOuterClass.ServerReply result = buildPartial();
+      public wmfx.ServerReplyOuterClass.ServerReply build() {
+        wmfx.ServerReplyOuterClass.ServerReply result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -696,14 +698,14 @@ public final class ServerReplyOuterClass {
       }
 
       @java.lang.Override
-      public ServerReplyOuterClass.ServerReply buildPartial() {
-        ServerReplyOuterClass.ServerReply result = new ServerReplyOuterClass.ServerReply(this);
+      public wmfx.ServerReplyOuterClass.ServerReply buildPartial() {
+        wmfx.ServerReplyOuterClass.ServerReply result = new wmfx.ServerReplyOuterClass.ServerReply(this);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
-      private void buildPartial0(ServerReplyOuterClass.ServerReply result) {
+      private void buildPartial0(wmfx.ServerReplyOuterClass.ServerReply result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.clientId_ = clientId_;
@@ -721,16 +723,16 @@ public final class ServerReplyOuterClass {
 
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof ServerReplyOuterClass.ServerReply) {
-          return mergeFrom((ServerReplyOuterClass.ServerReply)other);
+        if (other instanceof wmfx.ServerReplyOuterClass.ServerReply) {
+          return mergeFrom((wmfx.ServerReplyOuterClass.ServerReply)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(ServerReplyOuterClass.ServerReply other) {
-        if (other == ServerReplyOuterClass.ServerReply.getDefaultInstance()) return this;
+      public Builder mergeFrom(wmfx.ServerReplyOuterClass.ServerReply other) {
+        if (other == wmfx.ServerReplyOuterClass.ServerReply.getDefaultInstance()) return this;
         if (!other.getClientId().isEmpty()) {
           clientId_ = other.clientId_;
           bitField0_ |= 0x00000001;
@@ -908,16 +910,16 @@ public final class ServerReplyOuterClass {
        * @return The type.
        */
       @java.lang.Override
-      public ServerReplyOuterClass.ReplyType getType() {
-        ServerReplyOuterClass.ReplyType result = ServerReplyOuterClass.ReplyType.forNumber(type_);
-        return result == null ? ServerReplyOuterClass.ReplyType.UNRECOGNIZED : result;
+      public wmfx.ServerReplyOuterClass.ReplyType getType() {
+        wmfx.ServerReplyOuterClass.ReplyType result = wmfx.ServerReplyOuterClass.ReplyType.forNumber(type_);
+        return result == null ? wmfx.ServerReplyOuterClass.ReplyType.UNRECOGNIZED : result;
       }
       /**
        * <code>.ReplyType type = 2;</code>
        * @param value The type to set.
        * @return This builder for chaining.
        */
-      public Builder setType(ServerReplyOuterClass.ReplyType value) {
+      public Builder setType(wmfx.ServerReplyOuterClass.ReplyType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1085,12 +1087,12 @@ public final class ServerReplyOuterClass {
     }
 
     // @@protoc_insertion_point(class_scope:ServerReply)
-    private static final ServerReplyOuterClass.ServerReply DEFAULT_INSTANCE;
+    private static final wmfx.ServerReplyOuterClass.ServerReply DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new ServerReplyOuterClass.ServerReply();
+      DEFAULT_INSTANCE = new wmfx.ServerReplyOuterClass.ServerReply();
     }
 
-    public static ServerReplyOuterClass.ServerReply getDefaultInstance() {
+    public static wmfx.ServerReplyOuterClass.ServerReply getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1126,7 +1128,7 @@ public final class ServerReplyOuterClass {
     }
 
     @java.lang.Override
-    public ServerReplyOuterClass.ServerReply getDefaultInstanceForType() {
+    public wmfx.ServerReplyOuterClass.ServerReply getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -1153,8 +1155,8 @@ public final class ServerReplyOuterClass {
       "\022\020\n\014JOIN_SUCCESS\020\002\022\020\n\014JOIN_FAILURE\020\003\022\020\n\014" +
       "LIST_SUCCESS\020\004\022\020\n\014LIST_FAILURE\020\005\022\021\n\rLEAV" +
       "E_SUCCESS\020\006\022\021\n\rLEAVE_FAILURE\020\007\022\017\n\013MSG_SU" +
-      "CCESS\020\010\022\017\n\013MSG_FAILURE\020\t\022\013\n\007NEW_MSG\020\nb\006p" +
-      "roto3"
+      "CCESS\020\010\022\017\n\013MSG_FAILURE\020\t\022\013\n\007NEW_MSG\020\nB\006\n" +
+      "\004wmfxb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

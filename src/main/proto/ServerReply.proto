@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option java_package = "wmfx";
+
 enum ReplyType {
     CREATE_SUCCESS = 0;
     CREATE_FAILURE = 1;

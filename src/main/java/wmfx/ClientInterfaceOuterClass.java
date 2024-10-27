@@ -3,6 +3,8 @@
 // source: ClientInterface.proto
 // Protobuf Java Version: 4.28.3
 
+package wmfx;
+
 public final class ClientInterfaceOuterClass {
   private ClientInterfaceOuterClass() {}
   static {
@@ -36,17 +38,18 @@ public final class ClientInterfaceOuterClass {
       "/empty.proto\032\021ServerReply.proto2q\n\017Clien" +
       "tInterface\022-\n\005queue\022\014.ServerReply\032\026.goog" +
       "le.protobuf.Empty\022/\n\007dequeue\022\026.google.pr" +
-      "otobuf.Empty\032\014.ServerReplyb\006proto3"
+      "otobuf.Empty\032\014.ServerReplyB\006\n\004wmfxb\006prot" +
+      "o3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.EmptyProto.getDescriptor(),
-          ServerReplyOuterClass.getDescriptor(),
+          wmfx.ServerReplyOuterClass.getDescriptor(),
         });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.EmptyProto.getDescriptor();
-    ServerReplyOuterClass.getDescriptor();
+    wmfx.ServerReplyOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

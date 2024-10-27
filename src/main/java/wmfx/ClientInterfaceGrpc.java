@@ -1,3 +1,5 @@
+package wmfx;
+
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
 import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
@@ -27,27 +29,27 @@ public final class ClientInterfaceGrpc {
   // Static method descriptors that strictly reflect the proto.
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getQueueMethod()} instead. 
-  public static final io.grpc.MethodDescriptor<ServerReplyOuterClass.ServerReply,
+  public static final io.grpc.MethodDescriptor<wmfx.ServerReplyOuterClass.ServerReply,
       com.google.protobuf.Empty> METHOD_QUEUE = getQueueMethod();
 
-  private static volatile io.grpc.MethodDescriptor<ServerReplyOuterClass.ServerReply,
+  private static volatile io.grpc.MethodDescriptor<wmfx.ServerReplyOuterClass.ServerReply,
       com.google.protobuf.Empty> getQueueMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<ServerReplyOuterClass.ServerReply,
+  public static io.grpc.MethodDescriptor<wmfx.ServerReplyOuterClass.ServerReply,
       com.google.protobuf.Empty> getQueueMethod() {
-    io.grpc.MethodDescriptor<ServerReplyOuterClass.ServerReply, com.google.protobuf.Empty> getQueueMethod;
+    io.grpc.MethodDescriptor<wmfx.ServerReplyOuterClass.ServerReply, com.google.protobuf.Empty> getQueueMethod;
     if ((getQueueMethod = ClientInterfaceGrpc.getQueueMethod) == null) {
       synchronized (ClientInterfaceGrpc.class) {
         if ((getQueueMethod = ClientInterfaceGrpc.getQueueMethod) == null) {
           ClientInterfaceGrpc.getQueueMethod = getQueueMethod = 
-              io.grpc.MethodDescriptor.<ServerReplyOuterClass.ServerReply, com.google.protobuf.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<wmfx.ServerReplyOuterClass.ServerReply, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "ClientInterface", "queue"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ServerReplyOuterClass.ServerReply.getDefaultInstance()))
+                  wmfx.ServerReplyOuterClass.ServerReply.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
                   .setSchemaDescriptor(new ClientInterfaceMethodDescriptorSupplier("queue"))
@@ -60,20 +62,20 @@ public final class ClientInterfaceGrpc {
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getDequeueMethod()} instead. 
   public static final io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      ServerReplyOuterClass.ServerReply> METHOD_DEQUEUE = getDequeueMethod();
+      wmfx.ServerReplyOuterClass.ServerReply> METHOD_DEQUEUE = getDequeueMethod();
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      ServerReplyOuterClass.ServerReply> getDequeueMethod;
+      wmfx.ServerReplyOuterClass.ServerReply> getDequeueMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      ServerReplyOuterClass.ServerReply> getDequeueMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, ServerReplyOuterClass.ServerReply> getDequeueMethod;
+      wmfx.ServerReplyOuterClass.ServerReply> getDequeueMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, wmfx.ServerReplyOuterClass.ServerReply> getDequeueMethod;
     if ((getDequeueMethod = ClientInterfaceGrpc.getDequeueMethod) == null) {
       synchronized (ClientInterfaceGrpc.class) {
         if ((getDequeueMethod = ClientInterfaceGrpc.getDequeueMethod) == null) {
           ClientInterfaceGrpc.getDequeueMethod = getDequeueMethod = 
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, ServerReplyOuterClass.ServerReply>newBuilder()
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, wmfx.ServerReplyOuterClass.ServerReply>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "ClientInterface", "dequeue"))
@@ -81,7 +83,7 @@ public final class ClientInterfaceGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  ServerReplyOuterClass.ServerReply.getDefaultInstance()))
+                  wmfx.ServerReplyOuterClass.ServerReply.getDefaultInstance()))
                   .setSchemaDescriptor(new ClientInterfaceMethodDescriptorSupplier("dequeue"))
                   .build();
           }
@@ -119,7 +121,7 @@ public final class ClientInterfaceGrpc {
 
     /**
      */
-    public void queue(ServerReplyOuterClass.ServerReply request,
+    public void queue(wmfx.ServerReplyOuterClass.ServerReply request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getQueueMethod(), responseObserver);
     }
@@ -127,7 +129,7 @@ public final class ClientInterfaceGrpc {
     /**
      */
     public void dequeue(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<ServerReplyOuterClass.ServerReply> responseObserver) {
+        io.grpc.stub.StreamObserver<wmfx.ServerReplyOuterClass.ServerReply> responseObserver) {
       asyncUnimplementedUnaryCall(getDequeueMethod(), responseObserver);
     }
 
@@ -137,7 +139,7 @@ public final class ClientInterfaceGrpc {
             getQueueMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                ServerReplyOuterClass.ServerReply,
+                wmfx.ServerReplyOuterClass.ServerReply,
                 com.google.protobuf.Empty>(
                   this, METHODID_QUEUE)))
           .addMethod(
@@ -145,7 +147,7 @@ public final class ClientInterfaceGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 com.google.protobuf.Empty,
-                ServerReplyOuterClass.ServerReply>(
+                wmfx.ServerReplyOuterClass.ServerReply>(
                   this, METHODID_DEQUEUE)))
           .build();
     }
@@ -171,7 +173,7 @@ public final class ClientInterfaceGrpc {
 
     /**
      */
-    public void queue(ServerReplyOuterClass.ServerReply request,
+    public void queue(wmfx.ServerReplyOuterClass.ServerReply request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getQueueMethod(), getCallOptions()), request, responseObserver);
@@ -180,7 +182,7 @@ public final class ClientInterfaceGrpc {
     /**
      */
     public void dequeue(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<ServerReplyOuterClass.ServerReply> responseObserver) {
+        io.grpc.stub.StreamObserver<wmfx.ServerReplyOuterClass.ServerReply> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getDequeueMethod(), getCallOptions()), request, responseObserver);
     }
@@ -206,14 +208,14 @@ public final class ClientInterfaceGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty queue(ServerReplyOuterClass.ServerReply request) {
+    public com.google.protobuf.Empty queue(wmfx.ServerReplyOuterClass.ServerReply request) {
       return blockingUnaryCall(
           getChannel(), getQueueMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public ServerReplyOuterClass.ServerReply dequeue(com.google.protobuf.Empty request) {
+    public wmfx.ServerReplyOuterClass.ServerReply dequeue(com.google.protobuf.Empty request) {
       return blockingUnaryCall(
           getChannel(), getDequeueMethod(), getCallOptions(), request);
     }
@@ -240,14 +242,14 @@ public final class ClientInterfaceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> queue(
-        ServerReplyOuterClass.ServerReply request) {
+        wmfx.ServerReplyOuterClass.ServerReply request) {
       return futureUnaryCall(
           getChannel().newCall(getQueueMethod(), getCallOptions()), request);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<ServerReplyOuterClass.ServerReply> dequeue(
+    public com.google.common.util.concurrent.ListenableFuture<wmfx.ServerReplyOuterClass.ServerReply> dequeue(
         com.google.protobuf.Empty request) {
       return futureUnaryCall(
           getChannel().newCall(getDequeueMethod(), getCallOptions()), request);
@@ -275,12 +277,12 @@ public final class ClientInterfaceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_QUEUE:
-          serviceImpl.queue((ServerReplyOuterClass.ServerReply) request,
+          serviceImpl.queue((wmfx.ServerReplyOuterClass.ServerReply) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_DEQUEUE:
           serviceImpl.dequeue((com.google.protobuf.Empty) request,
-              (io.grpc.stub.StreamObserver<ServerReplyOuterClass.ServerReply>) responseObserver);
+              (io.grpc.stub.StreamObserver<wmfx.ServerReplyOuterClass.ServerReply>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -304,7 +306,7 @@ public final class ClientInterfaceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return ClientInterfaceOuterClass.getDescriptor();
+      return wmfx.ClientInterfaceOuterClass.getDescriptor();
     }
 
     @java.lang.Override
