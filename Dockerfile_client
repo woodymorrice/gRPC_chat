@@ -1,0 +1,18 @@
+FROM amazoncorretto:23
+
+WORKDIR /Client
+
+# COPY ClientInterface.java ./
+# COPY ClientObject.java ./
+# COPY Client.java ./
+
+# COPY ServerInterface.java ./
+# COPY ServerObject.java ./
+
+# COPY *.java ./
+#COPY ./bin ./
+#COPY ./lib ./
+
+COPY ./target/gRPC-1.0-SNAPSHOT-Client.jar ./
+
+CMD ["/bin/bash"]
