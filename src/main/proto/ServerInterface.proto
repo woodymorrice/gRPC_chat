@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "ClientRequest.proto";
+import "ServerReply.proto";
+
+service ServerInterface {
+    rpc registerClient(ClientRegistration) returns (google.protobuf.Empty);
+    rpc queueRequest(ClientRequest) returns (google.protobuf.Empty);
+    rpc dequeueRequest(google.protobuf.Empty) returns (ClientRequest);
+    rpc queueReply(ServerReply) returns (google.protobuf.Empty);
+    rpc dequeueReply(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+message ClientRegistration {
+    string ClientId = 1;
+}

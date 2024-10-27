@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+enum ReplyType {
+    CREATE_SUCCESS = 0;
+    CREATE_FAILURE = 1;
+    JOIN_SUCCESS = 2;
+    JOIN_FAILURE = 3;
+    LIST_SUCCESS = 4;
+    LIST_FAILURE = 5;
+    LEAVE_SUCCESS = 6;
+    LEAVE_FAILURE = 7;
+    MSG_SUCCESS = 8;
+    MSG_FAILURE = 9;
+    NEW_MSG = 10;
+}
+
+message ServerReply {
+    string clientId = 1;
+    ReplyType type = 2;
+    string body = 3;
+    string room = 4;
+}

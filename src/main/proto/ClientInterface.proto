@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "ServerReply.proto";
+
+service ClientInterface {
+    rpc queue(ServerReply) returns (google.protobuf.Empty);
+    rpc dequeue(google.protobuf.Empty) returns (ServerReply);
+}

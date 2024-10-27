@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+enum RequestType {
+    NONE = 0;
+    CREATE = 1;
+    JOIN = 2;
+    LIST = 3;
+    LEAVE = 4;
+    MESSAGE = 5;
+}
+
+message ClientRequest {
+    string clientId = 1;
+    RequestType type = 2;
+    string body = 3;
+    string room = 4;
+}
