@@ -47,7 +47,6 @@ class ServerRunner {
                 if (req != null) {
                     Runnable replier = new Replier(req);
                     exec.execute(replier);
-
                 }
             }
         }
@@ -76,89 +75,143 @@ class ServerRunner {
         private ServerReplyOuterClass.ServerReply parseRequest(ClientRequestOuterClass.ClientRequest request) {
             int result;
             switch (request.getType()) {
-//                case CREATE:
-//                    result = createRoom(request.getBody());
-//                    // SUCCESS
-//                    if (result == 0) {
+                case CREATE:
+                    result = createRoom(request.getBody());
+                    // SUCCESS
+                    if (result == 0) {
+                        return ServerReplyOuterClass.ServerReply.newBuilder()
+                                .setClientId(request.getClientId())
+                                .setType(ServerReplyOuterClass.ReplyType.CREATE_SUCCESS)
+                                .setBody("")
+                                .setRoom(request.getBody())
+                                .build();
 //                        return new ServerReply(
 //                            request.getClientId(),
 //                            ReplyType.CREATE_SUCCESS,
 //                            "",
 //                            request.getBody()
 //                        );
-//                    }
-//                    // FAILURE
+                    }
+                    // FAILURE
+                    return ServerReplyOuterClass.ServerReply.newBuilder()
+                            .setClientId(request.getClientId())
+                            .setType(ServerReplyOuterClass.ReplyType.CREATE_FAILURE)
+                            .setBody("")
+                            .setRoom(request.getBody())
+                            .build();
 //                    return new ServerReply(
 //                            request.getClientId(),
 //                            ReplyType.CREATE_FAILURE,
 //                            "",
 //                            request.getBody()
 //                    );
-//                case JOIN:
-//                    String log = joinRoom(request.getBody());
-//                    // SUCCESS
-//                    if (log != null) {
+                case JOIN:
+                    String log = joinRoom(request.getBody());
+                    // SUCCESS
+                    if (log != null) {
+                        return ServerReplyOuterClass.ServerReply.newBuilder()
+                                .setClientId(request.getClientId())
+                                .setType(ServerReplyOuterClass.ReplyType.JOIN_SUCCESS)
+                                .setBody(log)
+                                .setRoom(request.getBody())
+                                .build();
 //                        return new ServerReply(
 //                            request.getClientId(),
 //                            ReplyType.JOIN_SUCCESS,
 //                            log,
 //                            request.getBody()
 //                        );
-//                    }
-//                    // FAILURE
+                    }
+                    // FAILURE
+                    return ServerReplyOuterClass.ServerReply.newBuilder()
+                            .setClientId(request.getClientId())
+                            .setType(ServerReplyOuterClass.ReplyType.JOIN_FAILURE)
+                            .setBody("")
+                            .setRoom(request.getBody())
+                            .build();
 //                    return new ServerReply(
 //                            request.getClientId(),
 //                            ReplyType.JOIN_FAILURE,
 //                            "",
 //                            request.getBody()
 //                        );
-//                case LEAVE:
-//                    result = leaveRoom(request.getRoom());
-//                    // SUCCESS
-//                    if (result == 0) {
+                case LEAVE:
+                    result = leaveRoom(request.getRoom());
+                    // SUCCESS
+                    if (result == 0) {
+                        return ServerReplyOuterClass.ServerReply.newBuilder()
+                                .setClientId(request.getClientId())
+                                .setType(ServerReplyOuterClass.ReplyType.LEAVE_SUCCESS)
+                                .setBody("")
+                                .setRoom(request.getRoom())
+                                .build();
 //                        return new ServerReply(
 //                            request.getClientId(),
 //                            ReplyType.LEAVE_SUCCESS,
 //                            "",
 //                            request.getRoom()
 //                        );
-//                    }
-//                    // FAILURE
+                    }
+                    // FAILURE
+                    return ServerReplyOuterClass.ServerReply.newBuilder()
+                            .setClientId(request.getClientId())
+                            .setType(ServerReplyOuterClass.ReplyType.LEAVE_FAILURE)
+                            .setBody("")
+                            .setRoom(request.getRoom())
+                            .build();
 //                    return new ServerReply(
 //                            request.getClientId(),
 //                            ReplyType.LEAVE_FAILURE,
 //                            "",
 //                            request.getRoom()
 //                    );
-//                case LIST:
-//                    // SUCCESS
-//                    String list = listRooms();
+                case LIST:
+                    // SUCCESS
+                    String list = listRooms();
+                    return ServerReplyOuterClass.ServerReply.newBuilder()
+                            .setClientId(request.getClientId())
+                            .setType(ServerReplyOuterClass.ReplyType.LIST_SUCCESS)
+                            .setBody(list)
+                            .setRoom(request.getRoom())
+                            .build();
 //                    return new ServerReply(
 //                            request.getClientId(),
 //                            ReplyType.LIST_SUCCESS,
 //                            list,
 //                            request.getRoom()
 //                    );
-//                    // FAILURE - none.
-//                case MESSAGE:
-//                    ChatMsg message = addMessage(request);
-//                    // SUCCESS
-//                    if (message != null) {
+                    // FAILURE - none.
+                case MESSAGE:
+                    ChatMsg message = addMessage(request);
+                    // SUCCESS
+                    if (message != null) {
+                        return ServerReplyOuterClass.ServerReply.newBuilder()
+                                .setClientId("")
+                                .setType(ServerReplyOuterClass.ReplyType.NEW_MSG)
+                                .setBody(message.toString())
+                                .setRoom(request.getRoom())
+                                .build();
 //                        return new ServerReply(
 //                                "",
 //                                ReplyType.NEW_MSG,
 //                                message.toString(),
 //                                request.getRoom()
 //                        );
-//                    }
-//                    // FAILURE
+                    }
+                    // FAILURE
+                    return ServerReplyOuterClass.ServerReply.newBuilder()
+                            .setClientId("")
+                            .setType(ServerReplyOuterClass.ReplyType.MSG_FAILURE)
+                            .setBody(request.getBody())
+                            .setRoom(request.getRoom())
+                            .build();
 //                    return new ServerReply(
 //                            "",
 //                            ReplyType.MSG_FAILURE,
 //                            request.getBody(),
 //                            request.getRoom()
 //                    );
-//                case NONE: // unused
+                case NONE: // unused
                 default: return null;
             }
         }

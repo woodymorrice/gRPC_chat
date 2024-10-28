@@ -3,20 +3,43 @@ package wmfx;// import java.rmi.NotBoundException;
 // import java.rmi.registry.LocateRegistry;
 // import java.rmi.registry.Registry;
 
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+
 public class gRPCClient implements ClientCommunicationInterface {
     // ClientObject clientObject;
     // Registry registry;
     // ServerInterface serverInterface;
-    // String clientId;
+    ManagedChannel channel;
+    ServerInterfaceGrpc.ServerInterfaceBlockingStub stub;
+    String clientId;
 
-    // final int RETRY_ATTEMPTS = 3;
-    // final int RETRY_DELAY_MS = 3000;
+     final int RETRY_ATTEMPTS = 3;
+     final int RETRY_DELAY_MS = 3000;
 
     public gRPCClient() {}
 
     public int establishConnection(String cid) {
-        // clientId = cid;
-        // for (int i = 0; i < RETRY_ATTEMPTS; i++) {
+         clientId = cid;
+         for (int i = 0; i < RETRY_ATTEMPTS; i++) {
+             try {
+             channel = ManagedChannelBuilder.forAddress("server", 8080)
+                     .build();
+
+             stub = ServerInterfaceGrpc.newBlockingStub(channel);
+
+             }
+             catch (Exception e) {
+                 System.err.println("Error: " + e);
+                 System.out.println("Couldn't connect. Retrying..");
+                 try {
+                     Thread.sleep(RETRY_DELAY_MS);
+                 }
+                 catch (InterruptedException ie) {
+                     System.err.println("Sleep failed: " + e);
+                     return -1;
+                 }
+             }
         //     try {
         //         clientObject = new ClientObject();
         //         registry = LocateRegistry.getRegistry("server", 1099);
@@ -31,17 +54,8 @@ public class gRPCClient implements ClientCommunicationInterface {
         //         }
         //     }
         //     catch (RemoteException e) {
-        //         System.err.println("Remote Error: " + e);
-        //         System.out.println("Couldn't connect to registry. Retrying..");
-        //         try {
-        //             Thread.sleep(RETRY_DELAY_MS);
-        //         }
-        //         catch (InterruptedException ie) {
-        //             System.err.println("Sleep failed: " + e);
-        //             return -1;
-        //         }
         //     }
-        // }
+         }
         return 0;
     }
 

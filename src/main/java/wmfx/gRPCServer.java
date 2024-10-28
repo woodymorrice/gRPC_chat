@@ -1,30 +1,27 @@
-package wmfx;// import java.rmi.AlreadyBoundException;
-// import java.rmi.RemoteException;
-// import java.rmi.registry.LocateRegistry;
-// import java.rmi.registry.Registry;
+package wmfx;
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
 
 public class gRPCServer implements ServerCommunicationInterface {
-    // ServerObject serverObject;
-    // Registry registry;
+    Server server;
 
     public gRPCServer() {}
 
     public int listenForConnections() {
-        // try {
-        //     serverObject = new ServerObject();
-        //     registry = LocateRegistry.createRegistry(1099);
-        //     try {
-        //         registry.bind("serverObject", serverObject);
-        //     }
-        //     catch (AlreadyBoundException e) {
-        //         System.err.println("Name Already Bound: " + e);
-        //         return -1;
-        //     }
-        // }
-        // catch (RemoteException e) {
-        //     System.err.println("Remote Error: " + e);
-        //     return -1;
-        // }
+        try {
+            server = ServerBuilder.forPort(8080)
+                    .addService(new ServerObject())
+                    .build()
+                    .start();
+            System.out.println("Listening for connections on port 8080.");
+
+            server.awaitTermination();
+        }
+        catch (Exception e) {
+            System.err.println("Error: " + e);
+            e.printStackTrace();
+            return -1;
+        }
         return 0;
     }
 

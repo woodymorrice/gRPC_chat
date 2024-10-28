@@ -1,8 +1,6 @@
 package wmfx;
-
 import java.util.Scanner;
 import java.util.UUID;
-
 
 public class Client {
     public static void main(String[] args) {
@@ -17,8 +15,8 @@ public class Client {
 }
 
 class SendThread extends Thread {
-    private ClientCommunicationInterface cci;
-    private ClientProperties cp;
+    private final ClientCommunicationInterface cci;
+    private final ClientProperties cp;
 
     public SendThread(ClientCommunicationInterface cci, ClientProperties cp) {
         this.cci = cci;
@@ -34,7 +32,6 @@ class SendThread extends Thread {
             if (request == null) {
                 continue;
             }
-            // System.out.println("client calling cci.sendMessage(request)"); // debug
             cci.sendMessage(request);
         }
         scanner.close();
@@ -52,50 +49,49 @@ class SendThread extends Thread {
 
     private ClientRequestOuterClass.ClientRequest parseRequest(String input) {
         String cmd = getCommand(input);
-        switch (cmd) {
-//            case "": return null;
-//            case "create":
-//                if (getArgument(input).equals("")) {
-//                    return null;
-//                }
-//                return new ClientRequest(
-//                    cp.getClientId(),
-//                    RequestType.CREATE,
-//                    getArgument(input),
-//                    cp.getRoomName()
-//                );
-//            case "list":
-//                return new ClientRequest(
-//                    cp.getClientId(),
-//                    RequestType.LIST,
-//                    "",
-//                    cp.getRoomName()
-//                );
-//            case "join":
-//                return new ClientRequest(
-//                    cp.getClientId(),
-//                    RequestType.JOIN,
-//                    getArgument(input),
-//                    cp.getRoomName()
-//                );
-//            case "leave":
-//                return new ClientRequest(
-//                    cp.getClientId(),
-//                    RequestType.LEAVE,
-//                    "",
-//                    cp.getRoomName()
-//                );
-            default: 
-//                if (cp.inRoom()) {
-//                    return new ClientRequest(
-//                        cp.getClientId(),
-//                        RequestType.MESSAGE,
-//                        input,
-//                        cp.getRoomName()
-//                    );
-//                }
-                return null;
-        }
+        return switch (cmd) {
+            case "" -> null;
+            case "create" -> {
+                if (getArgument(input).isEmpty()) {
+                    yield null;
+                }
+                yield ClientRequestOuterClass.ClientRequest.newBuilder()
+                        .setClientId(cp.getClientId())
+                        .setType(ClientRequestOuterClass.RequestType.CREATE)
+                        .setBody(getArgument(input))
+                        .setRoom(cp.getRoomName())
+                        .build();
+            }
+            case "list" -> ClientRequestOuterClass.ClientRequest.newBuilder()
+                    .setClientId(cp.getClientId())
+                    .setType(ClientRequestOuterClass.RequestType.LIST)
+                    .setBody("")
+                    .setRoom(cp.getRoomName())
+                    .build();
+            case "join" -> ClientRequestOuterClass.ClientRequest.newBuilder()
+                    .setClientId(cp.getClientId())
+                    .setType(ClientRequestOuterClass.RequestType.JOIN)
+                    .setBody(getArgument(input))
+                    .setRoom(cp.getRoomName())
+                    .build();
+            case "leave" -> ClientRequestOuterClass.ClientRequest.newBuilder()
+                    .setClientId(cp.getClientId())
+                    .setType(ClientRequestOuterClass.RequestType.LEAVE)
+                    .setBody("")
+                    .setRoom(cp.getRoomName())
+                    .build();
+            default -> {
+                if (cp.inRoom()) {
+                    yield ClientRequestOuterClass.ClientRequest.newBuilder()
+                        .setClientId(cp.getClientId())
+                        .setType(ClientRequestOuterClass.RequestType.MESSAGE)
+                        .setBody(input)
+                        .setRoom(cp.getRoomName())
+                        .build();
+                }
+                yield null;
+            }
+        };
     }
 }
 
@@ -113,7 +109,7 @@ class ReceiveThread extends Thread {
         while (true) {
             ServerReplyOuterClass.ServerReply reply = cci.getReply();
             if (reply != null) {
-                System.out.println(reply.toString());
+                System.out.println(reply); // debug
                 parseReply(reply);
             }
         }
@@ -121,67 +117,67 @@ class ReceiveThread extends Thread {
 
     private int parseReply(ServerReplyOuterClass.ServerReply reply) {
         switch (reply.getType()) {
-//            case CREATE_SUCCESS:
-//                System.out.println(
-//                    "Created room: \"" + reply.getRoom() + "\"."
-//                );
-//                break;
-//            case CREATE_FAILURE:
-//                System.out.println(
-//                    "Can't create room. " +
-//                    "Room \"" + reply.getRoom() + "\" already exists."
-//                );
-//                break;
-//            case JOIN_SUCCESS:
-//                cp.setInRoom(true);
-//                cp.setRoomName(reply.getRoom());
-//                String log = "\n" + reply.getBody();
-//                if (reply.getBody().equals("")) {
-//                    log = "";
-//                }
-//                System.out.println(
-//                    "Joined room: \"" + reply.getRoom() + "\"." + log
-//                );
-//                break;
-//            case JOIN_FAILURE:
-//                System.out.println(
-//                    "Can't join room. " +
-//                    "Room \"" + reply.getRoom() + "\" doesn't exist."
-//                );
-//                break;
-//            case LIST_SUCCESS:
-//                System.out.println(
-//                    "Available rooms:\n" +
-//                    reply.getBody()
-//                );
-//                break;
-//            case LIST_FAILURE:
-//                // never reached...
-//                break;
-//            case LEAVE_SUCCESS:
-//                cp.setInRoom(false);
-//                cp.setRoomName("");
-//                System.out.println(
-//                    "Left room: " + reply.getRoom() + "\"."
-//                );
-//                break;
-//            case LEAVE_FAILURE:
-//                System.out.println(
-//                    "Can't leave room. " +
-//                    "Not currently in a room."
-//                );
-//                break;
-//            case MSG_SUCCESS: // silent/unused
-//                break;
-//            case MSG_FAILURE: // silent
-//                break;
-//            case NEW_MSG:
-//                // if msg for a different room, disregard
-//                if (reply.getRoom().equals(cp.getRoomName())
-//                && !(cp.getRoomName().equals(""))) {
-//                    System.out.println(reply.getBody());
-//                }
-//                break;
+            case CREATE_SUCCESS:
+                System.out.println(
+                    "Created room: \"" + reply.getRoom() + "\"."
+                );
+                break;
+            case CREATE_FAILURE:
+                System.out.println(
+                    "Can't create room. " +
+                    "Room \"" + reply.getRoom() + "\" already exists."
+                );
+                break;
+            case JOIN_SUCCESS:
+                cp.setInRoom(true);
+                cp.setRoomName(reply.getRoom());
+                String log = "\n" + reply.getBody();
+                if (reply.getBody().isEmpty()) {
+                    log = "";
+                }
+                System.out.println(
+                    "Joined room: \"" + reply.getRoom() + "\"." + log
+                );
+                break;
+            case JOIN_FAILURE:
+                System.out.println(
+                    "Can't join room. " +
+                    "Room \"" + reply.getRoom() + "\" doesn't exist."
+                );
+                break;
+            case LIST_SUCCESS:
+                System.out.println(
+                    "Available rooms:\n" +
+                    reply.getBody()
+                );
+                break;
+            case LIST_FAILURE:
+                // never reached...
+                break;
+            case LEAVE_SUCCESS:
+                cp.setInRoom(false);
+                cp.setRoomName("");
+                System.out.println(
+                    "Left room: " + reply.getRoom() + "\"."
+                );
+                break;
+            case LEAVE_FAILURE:
+                System.out.println(
+                    "Can't leave room. " +
+                    "Not currently in a room."
+                );
+                break;
+            case MSG_SUCCESS: // silent/unused
+                break;
+            case MSG_FAILURE: // silent
+                break;
+            case NEW_MSG:
+                // if msg for a different room, disregard
+                if (reply.getRoom().equals(cp.getRoomName())
+                && !(cp.getRoomName().isEmpty())) {
+                    System.out.println(reply.getBody());
+                }
+                break;
             default: break;
         }
         return 0;
@@ -189,7 +185,7 @@ class ReceiveThread extends Thread {
 }
 
 class ClientProperties {
-    private String clientId;
+    private final String clientId;
     private String roomName;
     private boolean inRoom;
 
