@@ -7,11 +7,11 @@ import "ClientRequest.proto";
 import "ServerReply.proto";
 
 service ServerInterface {
-    rpc registerClient(ClientRegistration) returns (google.protobuf.Empty);
+    rpc registerClient(ClientRegistration) returns (stream ServerReply);
     rpc queueRequest(ClientRequest) returns (google.protobuf.Empty);
     rpc dequeueRequest(google.protobuf.Empty) returns (ClientRequest);
     rpc queueReply(ServerReply) returns (google.protobuf.Empty);
-    rpc dequeueReply(google.protobuf.Empty) returns (google.protobuf.Empty);
+//    rpc dequeueReply(google.protobuf.Empty) returns (ServerReply);
 }
 
 message ClientRegistration {

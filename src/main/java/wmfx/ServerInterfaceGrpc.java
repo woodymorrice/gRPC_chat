@@ -30,28 +30,28 @@ public final class ServerInterfaceGrpc {
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   @java.lang.Deprecated // Use {@link #getRegisterClientMethod()} instead. 
   public static final io.grpc.MethodDescriptor<wmfx.ServerInterfaceOuterClass.ClientRegistration,
-      com.google.protobuf.Empty> METHOD_REGISTER_CLIENT = getRegisterClientMethod();
+      wmfx.ServerReplyOuterClass.ServerReply> METHOD_REGISTER_CLIENT = getRegisterClientMethod();
 
   private static volatile io.grpc.MethodDescriptor<wmfx.ServerInterfaceOuterClass.ClientRegistration,
-      com.google.protobuf.Empty> getRegisterClientMethod;
+      wmfx.ServerReplyOuterClass.ServerReply> getRegisterClientMethod;
 
   @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
   public static io.grpc.MethodDescriptor<wmfx.ServerInterfaceOuterClass.ClientRegistration,
-      com.google.protobuf.Empty> getRegisterClientMethod() {
-    io.grpc.MethodDescriptor<wmfx.ServerInterfaceOuterClass.ClientRegistration, com.google.protobuf.Empty> getRegisterClientMethod;
+      wmfx.ServerReplyOuterClass.ServerReply> getRegisterClientMethod() {
+    io.grpc.MethodDescriptor<wmfx.ServerInterfaceOuterClass.ClientRegistration, wmfx.ServerReplyOuterClass.ServerReply> getRegisterClientMethod;
     if ((getRegisterClientMethod = ServerInterfaceGrpc.getRegisterClientMethod) == null) {
       synchronized (ServerInterfaceGrpc.class) {
         if ((getRegisterClientMethod = ServerInterfaceGrpc.getRegisterClientMethod) == null) {
           ServerInterfaceGrpc.getRegisterClientMethod = getRegisterClientMethod = 
-              io.grpc.MethodDescriptor.<wmfx.ServerInterfaceOuterClass.ClientRegistration, com.google.protobuf.Empty>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              io.grpc.MethodDescriptor.<wmfx.ServerInterfaceOuterClass.ClientRegistration, wmfx.ServerReplyOuterClass.ServerReply>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "ServerInterface", "registerClient"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   wmfx.ServerInterfaceOuterClass.ClientRegistration.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
+                  wmfx.ServerReplyOuterClass.ServerReply.getDefaultInstance()))
                   .setSchemaDescriptor(new ServerInterfaceMethodDescriptorSupplier("registerClient"))
                   .build();
           }
@@ -155,38 +155,6 @@ public final class ServerInterfaceGrpc {
      }
      return getQueueReplyMethod;
   }
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  @java.lang.Deprecated // Use {@link #getDequeueReplyMethod()} instead. 
-  public static final io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      com.google.protobuf.Empty> METHOD_DEQUEUE_REPLY = getDequeueReplyMethod();
-
-  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      com.google.protobuf.Empty> getDequeueReplyMethod;
-
-  @io.grpc.ExperimentalApi("https://github.com/grpc/grpc-java/issues/1901")
-  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      com.google.protobuf.Empty> getDequeueReplyMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getDequeueReplyMethod;
-    if ((getDequeueReplyMethod = ServerInterfaceGrpc.getDequeueReplyMethod) == null) {
-      synchronized (ServerInterfaceGrpc.class) {
-        if ((getDequeueReplyMethod = ServerInterfaceGrpc.getDequeueReplyMethod) == null) {
-          ServerInterfaceGrpc.getDequeueReplyMethod = getDequeueReplyMethod = 
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "ServerInterface", "dequeueReply"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
-                  .setSchemaDescriptor(new ServerInterfaceMethodDescriptorSupplier("dequeueReply"))
-                  .build();
-          }
-        }
-     }
-     return getDequeueReplyMethod;
-  }
 
   /**
    * Creates a new async stub that supports all call types for the service
@@ -218,7 +186,7 @@ public final class ServerInterfaceGrpc {
     /**
      */
     public void registerClient(wmfx.ServerInterfaceOuterClass.ClientRegistration request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+        io.grpc.stub.StreamObserver<wmfx.ServerReplyOuterClass.ServerReply> responseObserver) {
       asyncUnimplementedUnaryCall(getRegisterClientMethod(), responseObserver);
     }
 
@@ -237,27 +205,23 @@ public final class ServerInterfaceGrpc {
     }
 
     /**
+     * <pre>
+     *    rpc dequeueReply(google.protobuf.Empty) returns (ServerReply);
+     * </pre>
      */
     public void queueReply(wmfx.ServerReplyOuterClass.ServerReply request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getQueueReplyMethod(), responseObserver);
     }
 
-    /**
-     */
-    public void dequeueReply(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(getDequeueReplyMethod(), responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getRegisterClientMethod(),
-            asyncUnaryCall(
+            asyncServerStreamingCall(
               new MethodHandlers<
                 wmfx.ServerInterfaceOuterClass.ClientRegistration,
-                com.google.protobuf.Empty>(
+                wmfx.ServerReplyOuterClass.ServerReply>(
                   this, METHODID_REGISTER_CLIENT)))
           .addMethod(
             getQueueRequestMethod(),
@@ -280,13 +244,6 @@ public final class ServerInterfaceGrpc {
                 wmfx.ServerReplyOuterClass.ServerReply,
                 com.google.protobuf.Empty>(
                   this, METHODID_QUEUE_REPLY)))
-          .addMethod(
-            getDequeueReplyMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.google.protobuf.Empty,
-                com.google.protobuf.Empty>(
-                  this, METHODID_DEQUEUE_REPLY)))
           .build();
     }
   }
@@ -312,8 +269,8 @@ public final class ServerInterfaceGrpc {
     /**
      */
     public void registerClient(wmfx.ServerInterfaceOuterClass.ClientRegistration request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnaryCall(
+        io.grpc.stub.StreamObserver<wmfx.ServerReplyOuterClass.ServerReply> responseObserver) {
+      asyncServerStreamingCall(
           getChannel().newCall(getRegisterClientMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -334,19 +291,14 @@ public final class ServerInterfaceGrpc {
     }
 
     /**
+     * <pre>
+     *    rpc dequeueReply(google.protobuf.Empty) returns (ServerReply);
+     * </pre>
      */
     public void queueReply(wmfx.ServerReplyOuterClass.ServerReply request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getQueueReplyMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void dequeueReply(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getDequeueReplyMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -370,8 +322,9 @@ public final class ServerInterfaceGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty registerClient(wmfx.ServerInterfaceOuterClass.ClientRegistration request) {
-      return blockingUnaryCall(
+    public java.util.Iterator<wmfx.ServerReplyOuterClass.ServerReply> registerClient(
+        wmfx.ServerInterfaceOuterClass.ClientRegistration request) {
+      return blockingServerStreamingCall(
           getChannel(), getRegisterClientMethod(), getCallOptions(), request);
     }
 
@@ -390,17 +343,13 @@ public final class ServerInterfaceGrpc {
     }
 
     /**
+     * <pre>
+     *    rpc dequeueReply(google.protobuf.Empty) returns (ServerReply);
+     * </pre>
      */
     public com.google.protobuf.Empty queueReply(wmfx.ServerReplyOuterClass.ServerReply request) {
       return blockingUnaryCall(
           getChannel(), getQueueReplyMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public com.google.protobuf.Empty dequeueReply(com.google.protobuf.Empty request) {
-      return blockingUnaryCall(
-          getChannel(), getDequeueReplyMethod(), getCallOptions(), request);
     }
   }
 
@@ -424,14 +373,6 @@ public final class ServerInterfaceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> registerClient(
-        wmfx.ServerInterfaceOuterClass.ClientRegistration request) {
-      return futureUnaryCall(
-          getChannel().newCall(getRegisterClientMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> queueRequest(
         wmfx.ClientRequestOuterClass.ClientRequest request) {
       return futureUnaryCall(
@@ -447,19 +388,14 @@ public final class ServerInterfaceGrpc {
     }
 
     /**
+     * <pre>
+     *    rpc dequeueReply(google.protobuf.Empty) returns (ServerReply);
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> queueReply(
         wmfx.ServerReplyOuterClass.ServerReply request) {
       return futureUnaryCall(
           getChannel().newCall(getQueueReplyMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> dequeueReply(
-        com.google.protobuf.Empty request) {
-      return futureUnaryCall(
-          getChannel().newCall(getDequeueReplyMethod(), getCallOptions()), request);
     }
   }
 
@@ -467,7 +403,6 @@ public final class ServerInterfaceGrpc {
   private static final int METHODID_QUEUE_REQUEST = 1;
   private static final int METHODID_DEQUEUE_REQUEST = 2;
   private static final int METHODID_QUEUE_REPLY = 3;
-  private static final int METHODID_DEQUEUE_REPLY = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -488,7 +423,7 @@ public final class ServerInterfaceGrpc {
       switch (methodId) {
         case METHODID_REGISTER_CLIENT:
           serviceImpl.registerClient((wmfx.ServerInterfaceOuterClass.ClientRegistration) request,
-              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+              (io.grpc.stub.StreamObserver<wmfx.ServerReplyOuterClass.ServerReply>) responseObserver);
           break;
         case METHODID_QUEUE_REQUEST:
           serviceImpl.queueRequest((wmfx.ClientRequestOuterClass.ClientRequest) request,
@@ -500,10 +435,6 @@ public final class ServerInterfaceGrpc {
           break;
         case METHODID_QUEUE_REPLY:
           serviceImpl.queueReply((wmfx.ServerReplyOuterClass.ServerReply) request,
-              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
-          break;
-        case METHODID_DEQUEUE_REPLY:
-          serviceImpl.dequeueReply((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
@@ -571,7 +502,6 @@ public final class ServerInterfaceGrpc {
               .addMethod(getQueueRequestMethod())
               .addMethod(getDequeueRequestMethod())
               .addMethod(getQueueReplyMethod())
-              .addMethod(getDequeueReplyMethod())
               .build();
         }
       }

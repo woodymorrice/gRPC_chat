@@ -42,8 +42,9 @@ class ServerRunner {
     class Receiver implements Runnable {
         public void run() {
             while (true) {
-                // System.out.println("server calling sci.receiveRequest()");
+//                System.out.println("Ready to Receive..");
                 ClientRequestOuterClass.ClientRequest req = sci.receiveRequest();
+//                System.out.println("Received: " + req); // debug
                 if (req != null) {
                     Runnable replier = new Replier(req);
                     exec.execute(replier);
@@ -61,13 +62,9 @@ class ServerRunner {
 
         public void run() {
             System.out.println(request); //debug
-            // ServerReply reply = new ServerReply(
-            //     "",
-            //     ReplyType.NEW_MSG, 
-            //     "New message received!", 
-            //     "");
             ServerReplyOuterClass.ServerReply reply = parseRequest(request);
             if (reply != null) {
+                System.out.println("calling sci.sendReply(reply);");
                 sci.sendReply(reply);
             }
         }

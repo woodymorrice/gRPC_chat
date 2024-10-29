@@ -552,15 +552,13 @@ public final class ServerInterfaceOuterClass {
       "\n\025ServerInterface.proto\032\033google/protobuf" +
       "/empty.proto\032\023ClientRequest.proto\032\021Serve" +
       "rReply.proto\"&\n\022ClientRegistration\022\020\n\010Cl" +
-      "ientId\030\001 \001(\t2\266\002\n\017ServerInterface\022=\n\016regi" +
-      "sterClient\022\023.ClientRegistration\032\026.google" +
-      ".protobuf.Empty\0226\n\014queueRequest\022\016.Client" +
-      "Request\032\026.google.protobuf.Empty\0228\n\016deque" +
-      "ueRequest\022\026.google.protobuf.Empty\032\016.Clie" +
-      "ntRequest\0222\n\nqueueReply\022\014.ServerReply\032\026." +
-      "google.protobuf.Empty\022>\n\014dequeueReply\022\026." +
-      "google.protobuf.Empty\032\026.google.protobuf." +
-      "EmptyB\006\n\004wmfxb\006proto3"
+      "ientId\030\001 \001(\t2\356\001\n\017ServerInterface\0225\n\016regi" +
+      "sterClient\022\023.ClientRegistration\032\014.Server" +
+      "Reply0\001\0226\n\014queueRequest\022\016.ClientRequest\032" +
+      "\026.google.protobuf.Empty\0228\n\016dequeueReques" +
+      "t\022\026.google.protobuf.Empty\032\016.ClientReques" +
+      "t\0222\n\nqueueReply\022\014.ServerReply\032\026.google.p" +
+      "rotobuf.EmptyB\006\n\004wmfxb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

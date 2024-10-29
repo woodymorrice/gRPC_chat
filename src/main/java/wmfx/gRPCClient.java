@@ -1,18 +1,16 @@
-package wmfx;// import java.rmi.NotBoundException;
-// import java.rmi.RemoteException;
-// import java.rmi.registry.LocateRegistry;
-// import java.rmi.registry.Registry;
-
+package wmfx;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
+
+import java.util.Iterator;
 
 public class gRPCClient implements ClientCommunicationInterface {
-    // ClientObject clientObject;
-    // Registry registry;
-    // ServerInterface serverInterface;
     ManagedChannel channel;
     ServerInterfaceGrpc.ServerInterfaceBlockingStub stub;
     String clientId;
+    Iterator listener;
 
      final int RETRY_ATTEMPTS = 3;
      final int RETRY_DELAY_MS = 3000;
@@ -23,11 +21,19 @@ public class gRPCClient implements ClientCommunicationInterface {
          clientId = cid;
          for (int i = 0; i < RETRY_ATTEMPTS; i++) {
              try {
-             channel = ManagedChannelBuilder.forAddress("server", 8080)
-                     .build();
+                 channel = ManagedChannelBuilder.forAddress("localhost", 8080)
+                         .usePlaintext()
+                         .build();
+                 stub = ServerInterfaceGrpc.newBlockingStub(channel);
 
-             stub = ServerInterfaceGrpc.newBlockingStub(channel);
 
+                 listener = stub.registerClient(
+                         ServerInterfaceOuterClass.ClientRegistration.newBuilder()
+                                 .setClientId(cid)
+                                 .build()
+                 );
+                 System.out.println("Client connected.");
+                 break;
              }
              catch (Exception e) {
                  System.err.println("Error: " + e);
@@ -60,18 +66,20 @@ public class gRPCClient implements ClientCommunicationInterface {
     }
 
     public int sendMessage(ClientRequestOuterClass.ClientRequest message) {
-        // try {
+         try {
+             stub.queueRequest(message);
         //     // System.out.println("RMIclient calling serverInterface.queueRequest(message)"); // debug
-        //     serverInterface.queueRequest(message);
-        // }
-        // catch (RemoteException e) {
-        //     System.err.println("Remote Error: " + e);
-        //     return -1;
-        // }
+//             serverInterface.queueRequest(message);
+         }
+         catch (Exception e) {
+             System.err.println("Error: " + e);
+             return -1;
+         }
         return 0;
     }
     
     public ServerReplyOuterClass.ServerReply getReply() {
+        return (ServerReplyOuterClass.ServerReply) listener.next();
         // try {
         //     return clientObject.dequeue();
         // }
@@ -79,6 +87,6 @@ public class gRPCClient implements ClientCommunicationInterface {
         //     System.err.println("Remote Error: " + e);
         //     return null;
         // }
-        return null;
+//        return null;
     }  
 }
