@@ -1,9 +1,6 @@
 package wmfx;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
-
 import java.util.Iterator;
 
 public class gRPCClient implements ClientCommunicationInterface {
@@ -25,8 +22,6 @@ public class gRPCClient implements ClientCommunicationInterface {
                          .usePlaintext()
                          .build();
                  stub = ServerInterfaceGrpc.newBlockingStub(channel);
-
-
                  listener = stub.registerClient(
                          ServerInterfaceOuterClass.ClientRegistration.newBuilder()
                                  .setClientId(cid)

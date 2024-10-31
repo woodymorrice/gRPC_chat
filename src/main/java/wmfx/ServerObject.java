@@ -71,7 +71,7 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
     public synchronized int dequeueReply() {
         try {
             ServerReplyOuterClass.ServerReply message = serverReplies.take();
-            if (Objects.equals(message.getClientId(), "")) {
+            if (Objects.equals(message.getType(), ServerReplyOuterClass.ReplyType.NEW_MSG)) {
                 notify(message);
             }
             else {
@@ -83,7 +83,6 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
                 catch (Exception e) {
                     clients.remove(message.getClientId());
                 }
-                return 0;
             }
         }
         catch (InterruptedException e) {

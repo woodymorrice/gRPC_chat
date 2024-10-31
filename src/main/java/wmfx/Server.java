@@ -182,7 +182,7 @@ class ServerRunner {
                     // SUCCESS
                     if (message != null) {
                         return ServerReplyOuterClass.ServerReply.newBuilder()
-                                .setClientId("")
+                                .setClientId(request.getClientId())
                                 .setType(ServerReplyOuterClass.ReplyType.NEW_MSG)
                                 .setBody(message.toString())
                                 .setRoom(request.getRoom())

@@ -199,7 +199,6 @@ class ClientProperties {
     private String generateClientId() {
         return UUID.randomUUID().toString();
     }
-
     public String getClientId() { return clientId; }
     public synchronized String getRoomName() { return roomName; }
     public synchronized void setRoomName(String s) { roomName = s; }
