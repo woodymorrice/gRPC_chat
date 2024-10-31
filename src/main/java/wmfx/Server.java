@@ -14,7 +14,6 @@ public class Server {
             sr.up();
         } catch (Exception e) {
             System.err.println("Server exception: " + e);
-            // e.printStackTrace();
         }
     }
 }
@@ -41,9 +40,7 @@ class ServerRunner {
     class Receiver implements Runnable {
         public void run() {
             while (true) {
-//                System.out.println("Ready to Receive..");
                 ClientRequestOuterClass.ClientRequest req = sci.receiveRequest();
-//                System.out.println("Received: " + req); // debug
                 if (req != null) {
                     Runnable replier = new Replier(req);
                     exec.execute(replier);
@@ -63,7 +60,6 @@ class ServerRunner {
             System.out.println(request); //debug
             ServerReplyOuterClass.ServerReply reply = parseRequest(request);
             if (reply != null) {
-//                System.out.println("calling sci.sendReply(reply);");
                 sci.sendReply(reply);
             }
         }
@@ -81,12 +77,6 @@ class ServerRunner {
                                 .setBody("")
                                 .setRoom(request.getBody())
                                 .build();
-//                        return new ServerReply(
-//                            request.getClientId(),
-//                            ReplyType.CREATE_SUCCESS,
-//                            "",
-//                            request.getBody()
-//                        );
                     }
                     // FAILURE
                     return ServerReplyOuterClass.ServerReply.newBuilder()
@@ -95,12 +85,6 @@ class ServerRunner {
                             .setBody("")
                             .setRoom(request.getBody())
                             .build();
-//                    return new ServerReply(
-//                            request.getClientId(),
-//                            ReplyType.CREATE_FAILURE,
-//                            "",
-//                            request.getBody()
-//                    );
                 case JOIN:
                     String log = joinRoom(request.getBody());
                     // SUCCESS
@@ -111,12 +95,6 @@ class ServerRunner {
                                 .setBody(log)
                                 .setRoom(request.getBody())
                                 .build();
-//                        return new ServerReply(
-//                            request.getClientId(),
-//                            ReplyType.JOIN_SUCCESS,
-//                            log,
-//                            request.getBody()
-//                        );
                     }
                     // FAILURE
                     return ServerReplyOuterClass.ServerReply.newBuilder()
@@ -125,12 +103,6 @@ class ServerRunner {
                             .setBody("")
                             .setRoom(request.getBody())
                             .build();
-//                    return new ServerReply(
-//                            request.getClientId(),
-//                            ReplyType.JOIN_FAILURE,
-//                            "",
-//                            request.getBody()
-//                        );
                 case LEAVE:
                     result = leaveRoom(request.getRoom());
                     // SUCCESS
@@ -141,12 +113,6 @@ class ServerRunner {
                                 .setBody("")
                                 .setRoom(request.getRoom())
                                 .build();
-//                        return new ServerReply(
-//                            request.getClientId(),
-//                            ReplyType.LEAVE_SUCCESS,
-//                            "",
-//                            request.getRoom()
-//                        );
                     }
                     // FAILURE
                     return ServerReplyOuterClass.ServerReply.newBuilder()
@@ -155,12 +121,6 @@ class ServerRunner {
                             .setBody("")
                             .setRoom(request.getRoom())
                             .build();
-//                    return new ServerReply(
-//                            request.getClientId(),
-//                            ReplyType.LEAVE_FAILURE,
-//                            "",
-//                            request.getRoom()
-//                    );
                 case LIST:
                     // SUCCESS
                     String list = listRooms();
@@ -170,12 +130,6 @@ class ServerRunner {
                             .setBody(list)
                             .setRoom(request.getRoom())
                             .build();
-//                    return new ServerReply(
-//                            request.getClientId(),
-//                            ReplyType.LIST_SUCCESS,
-//                            list,
-//                            request.getRoom()
-//                    );
                     // FAILURE - none.
                 case MESSAGE:
                     ChatMsg message = addMessage(request);
@@ -187,12 +141,6 @@ class ServerRunner {
                                 .setBody(message.toString())
                                 .setRoom(request.getRoom())
                                 .build();
-//                        return new ServerReply(
-//                                "",
-//                                ReplyType.NEW_MSG,
-//                                message.toString(),
-//                                request.getRoom()
-//                        );
                     }
                     // FAILURE
                     return ServerReplyOuterClass.ServerReply.newBuilder()
@@ -201,12 +149,6 @@ class ServerRunner {
                             .setBody(request.getBody())
                             .setRoom(request.getRoom())
                             .build();
-//                    return new ServerReply(
-//                            "",
-//                            ReplyType.MSG_FAILURE,
-//                            request.getBody(),
-//                            request.getRoom()
-//                    );
                 case NONE: // unused
                 default: return null;
             }
@@ -305,19 +247,14 @@ class ChatRoom {
                 sb.append("\n");
             }
         }
-        // for (ChatMsg msg: log) {
-        //     sb.append(msg.toString()).append("\n");
-        // }
         return sb.toString();
     }
-
     public synchronized void appendToLog(ChatMsg msg) {
         log.add(msg);
     }
 }
 
-/** Stores information about a specific message. Currently
- * only the user who posted it and the message itself. */
+/** Stores information about a specific message. */
 class ChatMsg {
     private final String user;
     private final String body;

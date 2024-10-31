@@ -95,7 +95,6 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
     private synchronized int notify(ServerReplyOuterClass.ServerReply message) {
         clients.forEach((id, address) -> {
             try {
-                // this doesnt work
                 if (!Objects.equals(id, message.getClientId())) {
                     address.onNext(message);
                 }

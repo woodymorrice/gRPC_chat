@@ -9,8 +9,8 @@ public class gRPCClient implements ClientCommunicationInterface {
     String clientId;
     Iterator listener;
 
-     final int RETRY_ATTEMPTS = 3;
-     final int RETRY_DELAY_MS = 3000;
+    final int RETRY_ATTEMPTS = 3;
+    final int RETRY_DELAY_MS = 3000;
 
     public gRPCClient() {}
 
@@ -41,21 +41,6 @@ public class gRPCClient implements ClientCommunicationInterface {
                      return -1;
                  }
              }
-        //     try {
-        //         clientObject = new ClientObject();
-        //         registry = LocateRegistry.getRegistry("server", 1099);
-        //         try {
-        //             serverInterface = (ServerInterface) registry.lookup("serverObject");
-        //             serverInterface.registerClient(clientId, clientObject);
-        //             // System.out.println("client registered.."); //debug
-        //         }
-        //         catch (NotBoundException e) {
-        //             System.err.println("Error: Registry name not bound. " + e);
-        //             return -1;
-        //         }
-        //     }
-        //     catch (RemoteException e) {
-        //     }
          }
         return 0;
     }
@@ -63,8 +48,6 @@ public class gRPCClient implements ClientCommunicationInterface {
     public int sendMessage(ClientRequestOuterClass.ClientRequest message) {
          try {
              stub.queueRequest(message);
-        //     // System.out.println("RMIclient calling serverInterface.queueRequest(message)"); // debug
-//             serverInterface.queueRequest(message);
          }
          catch (Exception e) {
              System.err.println("Error: " + e);
@@ -75,13 +58,5 @@ public class gRPCClient implements ClientCommunicationInterface {
     
     public ServerReplyOuterClass.ServerReply getReply() {
         return (ServerReplyOuterClass.ServerReply) listener.next();
-        // try {
-        //     return clientObject.dequeue();
-        // }
-        // catch (RemoteException e) {
-        //     System.err.println("Remote Error: " + e);
-        //     return null;
-        // }
-//        return null;
     }  
 }
