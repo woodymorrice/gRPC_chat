@@ -109,7 +109,7 @@ class ReceiveThread extends Thread {
         while (true) {
             ServerReplyOuterClass.ServerReply reply = cci.getReply();
             if (reply != null) {
-                System.out.println(reply); // debug
+//                System.out.println(reply); // debug
                 parseReply(reply);
             }
         }
@@ -174,7 +174,8 @@ class ReceiveThread extends Thread {
             case NEW_MSG:
                 // if msg for a different room, disregard
                 if (reply.getRoom().equals(cp.getRoomName())
-                && !(cp.getRoomName().isEmpty())) {
+                && !(cp.getRoomName().isEmpty())
+                && !reply.getClientId().equals(cp.getClientId())) {
                     System.out.println(reply.getBody());
                 }
                 break;

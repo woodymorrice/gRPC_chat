@@ -40,34 +40,12 @@ public class gRPCServer implements ServerCommunicationInterface {
     }
 
     public ClientRequestOuterClass.ClientRequest receiveRequest() {
-//         try {
-//             // System.out.println("RMIserver calling serverObject.dequeueRequest()");
-//             return server.getServices().
-//         }
-//         catch (RemoteException e) {
-//             System.err.println("Remote Error: " + e);
-//             return null;
-//         }
-//        return null;
         Empty empty = Empty.newBuilder().build();
         return stub.dequeueRequest(empty);
     }
 
     public int sendReply(ServerReplyOuterClass.ServerReply reply) {
-        // try {
-        //     serverObject.queueReply(reply);
-        // }
-        // catch (RemoteException e) {
-        //     System.err.println("Remote Error: " + e);
-        //     return -1;
-        // }
-        System.out.println("calling stub.queueReply(reply);");
         stub.queueReply(reply);
-        return 0;
-    }
-
-    public int notify(ServerReplyOuterClass.ServerReply reply) {
-        // NOT USED ATM
         return 0;
     }
 }

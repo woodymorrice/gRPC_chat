@@ -1,5 +1,4 @@
 package wmfx;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.ArrayList;
@@ -64,7 +63,7 @@ class ServerRunner {
             System.out.println(request); //debug
             ServerReplyOuterClass.ServerReply reply = parseRequest(request);
             if (reply != null) {
-                System.out.println("calling sci.sendReply(reply);");
+//                System.out.println("calling sci.sendReply(reply);");
                 sci.sendReply(reply);
             }
         }

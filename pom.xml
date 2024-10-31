@@ -51,7 +51,6 @@
             <artifactId>grpc-stub</artifactId>
             <version>1.64.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java -->
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>protoc-gen-grpc-java</artifactId>
@@ -164,6 +163,18 @@
                                 </manifest>
                             </archive>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
