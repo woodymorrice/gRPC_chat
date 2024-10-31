@@ -1,20 +1,11 @@
 FROM amazoncorretto:23
 
-# EXPOSE 1099
+EXPOSE 8080
+
+RUN yum update && yum install -y tar gzip
 
 WORKDIR /Server
 
-# COPY ServerInterface.java ./
-# COPY ServerObject.java ./
-# COPY Server.java ./
-
-# COPY ClientInterface.java ./
-# COPY ClientObject.java ./
-
-# COPY *.java ./
-#COPY ./bin ./
-#COPY ./lib ./
-
-COPY ./target/gRPC-1.0-SNAPSHOT-Server.jar ./
+COPY ./ ./
 
 CMD ["/bin/bash"]

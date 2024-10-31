@@ -1,6 +1,9 @@
 package wmfx;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+
+import java.io.IOException;
+import java.net.Socket;
 import java.util.Iterator;
 
 public class gRPCClient implements ClientCommunicationInterface {
@@ -18,7 +21,7 @@ public class gRPCClient implements ClientCommunicationInterface {
          clientId = cid;
          for (int i = 0; i < RETRY_ATTEMPTS; i++) {
              try {
-                 channel = ManagedChannelBuilder.forAddress("localhost", 8080)
+                 channel = ManagedChannelBuilder.forAddress("server", 8080)
                          .usePlaintext()
                          .build();
                  stub = ServerInterfaceGrpc.newBlockingStub(channel);

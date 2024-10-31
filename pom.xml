@@ -121,51 +121,51 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+<!--            <plugin>-->
 
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <!-- First JAR -->
-                    <execution>
-                        <id>Server</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <classifier>Server</classifier>
-                            <archive>
-                                <manifest>
-                                    <addClasspath>true</addClasspath>
-                                    <classpathPrefix>lib/</classpathPrefix>
-                                    <mainClass>wmfx.Server</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-jar-plugin</artifactId>-->
+<!--                <version>3.2.0</version>-->
+<!--                <executions>-->
+<!--                    &lt;!&ndash; First JAR &ndash;&gt;-->
+<!--                    <execution>-->
+<!--                        <id>Server</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>jar</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <classifier>Server</classifier>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <addClasspath>true</addClasspath>-->
+<!--                                    <classpathPrefix>lib/</classpathPrefix>-->
+<!--                                    <mainClass>wmfx.Server</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
 
-                    <!-- Second JAR -->
-                    <execution>
-                        <id>Client</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                        <configuration>
-                            <classifier>Client</classifier>
-                            <archive>
-                                <manifest>
-                                    <addClasspath>true</addClasspath>
-                                    <classpathPrefix>lib/</classpathPrefix>
-                                    <mainClass>wmfx.Client</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!--                    &lt;!&ndash; Second JAR &ndash;&gt;-->
+<!--                    <execution>-->
+<!--                        <id>Client</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>jar</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <classifier>Client</classifier>-->
+<!--                            <archive>-->
+<!--                                <manifest>-->
+<!--                                    <addClasspath>true</addClasspath>-->
+<!--                                    <classpathPrefix>lib/</classpathPrefix>-->
+<!--                                    <mainClass>wmfx.Client</mainClass>-->
+<!--                                </manifest>-->
+<!--                            </archive>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>

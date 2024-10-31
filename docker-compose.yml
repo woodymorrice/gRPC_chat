@@ -1,41 +1,37 @@
-name: chatserver
+name: gRPC_chat
 services:
   server:
     build:
       context: .
       dockerfile: Dockerfile_server
     container_name: server
-    # ports:
-    #   - "1099:1099"
+    ports:
+     - "8080:8080"
     stdin_open: true
     tty: true
-    command: > 
+    command: >
       bash -c "
-      java -jar gRPC-1.0-SNAPSHOT-Server.jar
+      ./mvnw exec:java -Dexec.mainClass='wmfx.Server' --quiet
       "
   client1:
     build:
       context: .
       dockerfile: Dockerfile_client
     container_name: client1
-    depends_on:
-      - server
     stdin_open: true
     tty: true
     command: >
       bash -c "
-      java -jar gRPC-1.0-SNAPSHOT-Client.jar
+      ./client_delay.sh
       "
-  client2:
-    build:
-      context: .
-      dockerfile: Dockerfile_client
-    container_name: client2
-    depends_on:
-      - server
-    stdin_open: true
-    tty: true
-    command: >
-      bash -c "
-      java -jar gRPC-1.0-SNAPSHOT-Client.jar
-      "
+#  client2:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile_client
+#    container_name: client2
+#    stdin_open: true
+#    tty: true
+#    command: >
+#      bash -c "
+#      ./client_delay.sh
+#      "

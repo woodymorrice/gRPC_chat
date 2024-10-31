@@ -1,18 +1,11 @@
 FROM amazoncorretto:23
 
+RUN yum update && yum install -y tar gzip
+
 WORKDIR /Client
 
-# COPY ClientInterface.java ./
-# COPY ClientObject.java ./
-# COPY Client.java ./
+COPY ./ ./
 
-# COPY ServerInterface.java ./
-# COPY ServerObject.java ./
-
-# COPY *.java ./
-#COPY ./bin ./
-#COPY ./lib ./
-
-COPY ./target/gRPC-1.0-SNAPSHOT-Client.jar ./
+RUN chmod +x ./client_delay.sh
 
 CMD ["/bin/bash"]

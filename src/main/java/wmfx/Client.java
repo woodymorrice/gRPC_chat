@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class Client {
     public static void main(String[] args) {
+        System.out.println("Connecting to server..");
         ClientProperties cp = new ClientProperties();
         ClientCommunicationInterface cci = new gRPCClient();
         cci.establishConnection(cp.getClientId());

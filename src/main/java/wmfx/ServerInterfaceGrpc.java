@@ -205,9 +205,6 @@ public final class ServerInterfaceGrpc {
     }
 
     /**
-     * <pre>
-     *    rpc dequeueReply(google.protobuf.Empty) returns (ServerReply);
-     * </pre>
      */
     public void queueReply(wmfx.ServerReplyOuterClass.ServerReply request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
@@ -291,9 +288,6 @@ public final class ServerInterfaceGrpc {
     }
 
     /**
-     * <pre>
-     *    rpc dequeueReply(google.protobuf.Empty) returns (ServerReply);
-     * </pre>
      */
     public void queueReply(wmfx.ServerReplyOuterClass.ServerReply request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
@@ -343,9 +337,6 @@ public final class ServerInterfaceGrpc {
     }
 
     /**
-     * <pre>
-     *    rpc dequeueReply(google.protobuf.Empty) returns (ServerReply);
-     * </pre>
      */
     public com.google.protobuf.Empty queueReply(wmfx.ServerReplyOuterClass.ServerReply request) {
       return blockingUnaryCall(
@@ -388,9 +379,6 @@ public final class ServerInterfaceGrpc {
     }
 
     /**
-     * <pre>
-     *    rpc dequeueReply(google.protobuf.Empty) returns (ServerReply);
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> queueReply(
         wmfx.ServerReplyOuterClass.ServerReply request) {

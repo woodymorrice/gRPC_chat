@@ -19,7 +19,7 @@ public class gRPCServer implements ServerCommunicationInterface {
                     .build()
                     .start();
             System.out.println("Listening for connections on port 8080.");
-            channel = ManagedChannelBuilder.forAddress("localhost", 8080)
+            channel = ManagedChannelBuilder.forAddress("0.0.0.0", 8080)
                     .usePlaintext()
                     .build();
             stub = ServerInterfaceGrpc.newBlockingStub(channel);
