@@ -2,6 +2,8 @@ package wmfx;
 import java.util.Scanner;
 import java.util.UUID;
 
+/* Initializes client properties, establishes connection,
+ * and starts send and receive threads.*/
 public class Client {
     public static void main(String[] args) {
         System.out.println("Connecting to server..");
@@ -15,6 +17,7 @@ public class Client {
     }
 }
 
+/* Contains logic to send client requests and messages. */
 class SendThread extends Thread {
     private final ClientCommunicationInterface cci;
     private final ClientProperties cp;
@@ -24,6 +27,7 @@ class SendThread extends Thread {
         this.cp = cp;
     }
 
+    /* Takes user input, parses it, and sends it out. */
     @Override
     public void run() {
         Scanner scanner = new Scanner(System.in);
@@ -38,21 +42,28 @@ class SendThread extends Thread {
         scanner.close();
     }
 
+    /* Gets the command from the string input from stdin. */
     private String getCommand(String input) {
         int firstSpace = input.indexOf(" ");
         return ((firstSpace == -1) ? input : input.substring(0, firstSpace));
     }
 
+    /* Gets the argument (the remainder of the string after
+     * the command) from string input from stdin. */
     private String getArgument(String input) {
         int firstSpace = input.indexOf(" ");
-        return ((firstSpace == -1) ? "" : input.substring(firstSpace + 1));
+        return ((firstSpace == -1)
+                ? "" : input.substring(firstSpace + 1));
     }
 
+    /* Parses the client request and packages it up nicely
+     * to send to the server. */
     private ClientRequestOuterClass.ClientRequest parseRequest(String input) {
         String cmd = getCommand(input);
         return switch (cmd) {
             case "" -> null;
             case "create" -> {
+                // can't create a room with an empty string as a name
                 if (getArgument(input).isEmpty()) {
                     yield null;
                 }
@@ -96,6 +107,7 @@ class SendThread extends Thread {
     }
 }
 
+/* Receives replies from the server and displays output. */
 class ReceiveThread extends Thread {
     ClientCommunicationInterface cci;
     ClientProperties cp;
@@ -105,6 +117,7 @@ class ReceiveThread extends Thread {
         this.cp = cp;
     }
 
+    /* Waits for a reply, and parses it. */
     @Override
     public void run() {
         while (true) {
@@ -116,6 +129,8 @@ class ReceiveThread extends Thread {
         }
     }
 
+    /* Parses replies, which usually means printing
+     * some of the contents to the console. */
     private int parseReply(ServerReplyOuterClass.ServerReply reply) {
         switch (reply.getType()) {
             case CREATE_SUCCESS:
@@ -186,6 +201,8 @@ class ReceiveThread extends Thread {
     }
 }
 
+/* Holds class properties for all threads to see.
+ * Mutable attributes are protected with 'synchronized' */
 class ClientProperties {
     private final String clientId;
     private String roomName;

@@ -4,6 +4,7 @@ import "google/protobuf/empty.proto";
 import "ClientRequest.proto";
 import "ServerReply.proto";
 
+/* Server gRPC methods. */
 service ServerInterface {
     rpc registerClient(ClientRegistration) returns (stream ServerReply);
     rpc queueRequest(ClientRequest) returns (google.protobuf.Empty);
@@ -11,6 +12,8 @@ service ServerInterface {
     rpc queueReply(ServerReply) returns (google.protobuf.Empty);
 }
 
+/* Message object to package client UUIDs because
+ * all data sent in gRPC needs to be in a message. */
 message ClientRegistration {
     string ClientId = 1;
 }

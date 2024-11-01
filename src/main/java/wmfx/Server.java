@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Random;
 
+/* Performs initialization tasks and runs the server. */
 public class Server {
     public static void main(String[] args) {
         try {
@@ -18,6 +19,8 @@ public class Server {
     }
 }
 
+/* Manages all aspects of the server--getting requests,
+ * sending replies, updating rooms & usernames */
 class ServerRunner {
     ServerCommunicationInterface sci;
     ExecutorService exec;
@@ -31,12 +34,14 @@ class ServerRunner {
         usernames = new Hashtable<>();
     }
 
+    /* Starts the receiver thread. */
     public int up() {
         Runnable receiver = new Receiver();
         exec.execute(receiver);
         return 0;
     }
 
+    /* Gets requests and spawns thread to handle requests. */
     class Receiver implements Runnable {
         public void run() {
             while (true) {
@@ -49,6 +54,8 @@ class ServerRunner {
         }
     }
 
+    /* Parses requests, performs necessary computations,
+     * and dispatches replies. */
     class Replier implements Runnable {
         ClientRequestOuterClass.ClientRequest request;
 
@@ -64,6 +71,8 @@ class ServerRunner {
             }
         }
 
+        /* Parses client request and returns a ServerReply object
+         * to send back to the client.*/
         private ServerReplyOuterClass.ServerReply parseRequest(ClientRequestOuterClass.ClientRequest request) {
             int result;
             switch (request.getType()) {
@@ -155,6 +164,7 @@ class ServerRunner {
         }
     }
 
+    /* Creates a new chat room. */
     private int createRoom(String name) {
         ChatRoom room = rooms.get(name);
         if (room != null) {
@@ -164,6 +174,8 @@ class ServerRunner {
         return 0;
     }
 
+    /* Returns the room's log that the user
+     * wants to join. */
     private String joinRoom(String name) {
         ChatRoom room = rooms.get(name);
         if (room == null) {
@@ -172,6 +184,8 @@ class ServerRunner {
         return room.getLog();
     }
 
+    /* Checks if the user is in a room to
+     * send back an appropriate reply. */
     private int leaveRoom(String name) {
         if (name.isEmpty()) {
             return -1;
@@ -179,6 +193,8 @@ class ServerRunner {
         return 0;
     }
 
+    /* Returns a list of available rooms
+     * to join. */
     private String listRooms() {
         if (rooms.isEmpty()) {
             return "none";
@@ -194,6 +210,7 @@ class ServerRunner {
         return sb.toString();
     }
 
+    /* Adds a message to a chat room's log. */
     private ChatMsg addMessage(ClientRequestOuterClass.ClientRequest request) {
         ChatRoom room = rooms.get(request.getRoom());
         if (room == null) {
@@ -208,6 +225,8 @@ class ServerRunner {
         return message;
     }
 
+    /* Generates a cute little username for a client because
+     * UUIDs aren't very cute. */
     private String generateUsername(String clientId) {
         String[] adjectives = {
             "Brave", "Calm", "Cute", "Dizzy", "Fair", "Fast", "Fuzzy", "Gentle", "Glad", "Jolly",
@@ -225,7 +244,7 @@ class ServerRunner {
             name = adjectives[random.nextInt(adjectives.length)] +
                           animals[random.nextInt(animals.length)];
         }
-        while (usernames.containsKey(name));
+        while (usernames.containsValue(name));
         usernames.put(clientId, name);
         return name;
     }

@@ -1,11 +1,10 @@
 package wmfx;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-
-import java.io.IOException;
-import java.net.Socket;
 import java.util.Iterator;
 
+/* Separates specific middleware logic from Client.java by
+ * implementing ClientCommunicationInterface. */
 public class gRPCClient implements ClientCommunicationInterface {
     ManagedChannel channel;
     ServerInterfaceGrpc.ServerInterfaceBlockingStub stub;
@@ -17,11 +16,14 @@ public class gRPCClient implements ClientCommunicationInterface {
 
     public gRPCClient() {}
 
+    /* Performs necessary initialization and establishes
+     * connection to the server. */
     public int establishConnection(String cid) {
          clientId = cid;
          for (int i = 0; i < RETRY_ATTEMPTS; i++) {
              try {
-                 channel = ManagedChannelBuilder.forAddress("server", 8080)
+                 channel = ManagedChannelBuilder.forAddress(
+                         "server", 8080)
                          .usePlaintext()
                          .build();
                  stub = ServerInterfaceGrpc.newBlockingStub(channel);
@@ -48,6 +50,7 @@ public class gRPCClient implements ClientCommunicationInterface {
         return 0;
     }
 
+    /* Passes messages from Client.java to middleware implementation. */
     public int sendMessage(ClientRequestOuterClass.ClientRequest message) {
          try {
              stub.queueRequest(message);
@@ -58,7 +61,9 @@ public class gRPCClient implements ClientCommunicationInterface {
          }
         return 0;
     }
-    
+
+    /* Gets messages from middleware implementation and passes
+     * then to Client.java. */
     public ServerReplyOuterClass.ServerReply getReply() {
         return (ServerReplyOuterClass.ServerReply) listener.next();
     }  

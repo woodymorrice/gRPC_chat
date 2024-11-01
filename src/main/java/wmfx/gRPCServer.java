@@ -5,6 +5,8 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
+/* Separates specific middleware logic from Server.java by
+ * implementing ServerCommunicationInterface. */
 public class gRPCServer implements ServerCommunicationInterface {
     Server server;
     ManagedChannel channel;
@@ -12,6 +14,8 @@ public class gRPCServer implements ServerCommunicationInterface {
 
     public gRPCServer() {}
 
+    /* Performs necessary initialization and begins
+     * listening for connections. */
     public int listenForConnections() {
         try {
             server = ServerBuilder.forPort(8080)
@@ -23,9 +27,9 @@ public class gRPCServer implements ServerCommunicationInterface {
                     .usePlaintext()
                     .build();
             stub = ServerInterfaceGrpc.newBlockingStub(channel);
-            new Thread(() -> {
+            new Thread(() -> { // create new thread for blocking call
                 try {
-                    server.awaitTermination(); // This will block in the new thread
+                    server.awaitTermination(); // This blocks
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -39,11 +43,15 @@ public class gRPCServer implements ServerCommunicationInterface {
         return 0;
     }
 
+    /* Server.java calls this to get requests from the middleware
+     * implementation. */
     public ClientRequestOuterClass.ClientRequest receiveRequest() {
         Empty empty = Empty.newBuilder().build();
         return stub.dequeueRequest(empty);
     }
 
+    /* Server.java calls this to send replies to the
+     * middleware implementation. */
     public int sendReply(ServerReplyOuterClass.ServerReply reply) {
         stub.queueReply(reply);
         return 0;

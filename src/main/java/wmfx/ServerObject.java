@@ -6,8 +6,11 @@ import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-/* NOTE -- queue and dequeue operations are all threadsafe because 
- * LinkedBlockingQueues are threadsafe by design. */
+/* Implements gRPC methods from ServerInterface.
+ * NOTE -- queue and dequeue operations are all threadsafe because
+ * LinkedBlockingQueues are threadsafe by design. Hashtables are too
+ * but I wrapped all calls to that in synchronized because I got a
+ * warning about it. */
 public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
     private Hashtable <String, StreamObserver<ServerReplyOuterClass.ServerReply>> clients;
     private BlockingQueue<ClientRequestOuterClass.ClientRequest> clientRequests;
@@ -20,6 +23,7 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
         serverReplies = new LinkedBlockingQueue<>();
     }
 
+    /* Clients call this to register themselves with the server. */
     public void registerClient(ServerInterfaceOuterClass.ClientRegistration clientId,
                                StreamObserver<ServerReplyOuterClass.ServerReply> responseObserver) {
         clients.put(clientId.getClientId(), responseObserver);
@@ -33,6 +37,7 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
         );
     }
 
+    /* Clients call this to queue up requests for the server. */
     public void queueRequest(ClientRequestOuterClass.ClientRequest message,
                              StreamObserver<Empty> responseObserver) {
         try {
@@ -45,6 +50,7 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
         }
     }
 
+    /* Server calls this to get client requests. */
     public void dequeueRequest(Empty request, StreamObserver<ClientRequestOuterClass.ClientRequest> responseObserver) {
         try {
             ClientRequestOuterClass.ClientRequest message = clientRequests.take();
@@ -56,6 +62,7 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
         }
     }
 
+    /* Server calls this to queue up replies for clients. */
     public void queueReply(ServerReplyOuterClass.ServerReply message, StreamObserver<Empty> responseObserver) {
         try {
             serverReplies.put(message);
@@ -68,6 +75,8 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
         }
     }
 
+    /* This is called by queueReply in the current implementation.
+     * Sends out replies to clients. */
     public synchronized int dequeueReply() {
         try {
             ServerReplyOuterClass.ServerReply message = serverReplies.take();
@@ -92,6 +101,8 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
         return 0;
     }
 
+    /* Is called by dequeueReply, sends new chat messages to all
+     * Clients in the room. */
     private synchronized int notify(ServerReplyOuterClass.ServerReply message) {
         clients.forEach((id, address) -> {
             try {
