@@ -12,7 +12,7 @@ public class Server {
             ServerCommunicationInterface sci = new gRPCServer();
             sci.listenForConnections();
             ServerRunner sr = new ServerRunner(sci);
-            sr.up();
+            sr.up(); // start the server
         } catch (Exception e) {
             System.err.println("Server exception: " + e);
         }
@@ -29,6 +29,7 @@ class ServerRunner {
 
     public ServerRunner(ServerCommunicationInterface sci) {
         this.sci = sci;
+        // create a thread pool
         exec = Executors.newFixedThreadPool(32);
         rooms = new Hashtable<>();
         usernames = new Hashtable<>();
@@ -45,7 +46,7 @@ class ServerRunner {
         public void run() {
             while (true) {
                 ClientRequestOuterClass.ClientRequest req = sci.receiveRequest();
-                if (req != null) {
+                if (req != null) { // create a reply thread
                     Runnable replier = new Replier(req);
                     exec.execute(replier);
                 }
@@ -63,9 +64,8 @@ class ServerRunner {
         }
 
         public void run() {
-            System.out.println(request); //debug
             ServerReplyOuterClass.ServerReply reply = parseRequest(request);
-            if (reply != null) {
+            if (reply != null) { // send reply
                 sci.sendReply(reply);
             }
         }
@@ -74,6 +74,7 @@ class ServerRunner {
          * to send back to the client.*/
         private ServerReplyOuterClass.ServerReply parseRequest(ClientRequestOuterClass.ClientRequest request) {
             int result;
+            // switch on request type and send appropriate reply
             switch (request.getType()) {
                 case CREATE:
                     result = createRoom(request.getBody());
@@ -166,7 +167,7 @@ class ServerRunner {
     /* Creates a new chat room. */
     private int createRoom(String name) {
         ChatRoom room = rooms.get(name);
-        if (room != null) {
+        if (room != null) { // room already exists
             return -1;
         }
         rooms.put(name, new ChatRoom());
@@ -177,7 +178,7 @@ class ServerRunner {
      * wants to join. */
     private String joinRoom(String name) {
         ChatRoom room = rooms.get(name);
-        if (room == null) {
+        if (room == null) { // room doesn't exist
             return null;
         }
         return room.getLog();
@@ -186,7 +187,7 @@ class ServerRunner {
     /* Checks if the user is in a room to
      * send back an appropriate reply. */
     private int leaveRoom(String name) {
-        if (name.isEmpty()) {
+        if (name.isEmpty()) { // room doesn't exist
             return -1;
         }
         return 0;
@@ -195,7 +196,7 @@ class ServerRunner {
     /* Returns a list of available rooms
      * to join. */
     private String listRooms() {
-        if (rooms.isEmpty()) {
+        if (rooms.isEmpty()) { // no rooms
             return "none";
         }
         StringBuilder sb = new StringBuilder();
@@ -212,11 +213,11 @@ class ServerRunner {
     /* Adds a message to a chat room's log. */
     private ChatMsg addMessage(ClientRequestOuterClass.ClientRequest request) {
         ChatRoom room = rooms.get(request.getRoom());
-        if (room == null) {
+        if (room == null) { // just in case
             return null;
         }
         String name = usernames.get(request.getClientId());
-        if (name == null) {
+        if (name == null) { // create a username on first message
             name = generateUsername(request.getClientId());
         }
         ChatMsg message = new ChatMsg(name, request.getBody());
@@ -242,7 +243,7 @@ class ServerRunner {
         do {
             name = adjectives[random.nextInt(adjectives.length)] +
                           animals[random.nextInt(animals.length)];
-        }
+        } // keep generating until the name is unique
         while (usernames.containsValue(name));
         usernames.put(clientId, name);
         return name;

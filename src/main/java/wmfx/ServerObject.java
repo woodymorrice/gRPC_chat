@@ -80,10 +80,11 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
     public synchronized void dequeueReply() {
         try {
             ServerReplyOuterClass.ServerReply message = serverReplies.take();
+            // if new chat message, call notify()
             if (Objects.equals(message.getType(), ServerReplyOuterClass.ReplyType.NEW_MSG)) {
                 notify(message);
             }
-            else {
+            else { // send reply to concerned client
                 StreamObserver<ServerReplyOuterClass.ServerReply> client =
                         clients.get(message.getClientId());
                 try {
