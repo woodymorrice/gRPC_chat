@@ -26,6 +26,10 @@ public final class ClientRequestOuterClass {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   /**
+   * <pre>
+   * Tags for client requests.
+   * </pre>
+   *
    * Protobuf enum {@code RequestType}
    */
   public enum RequestType
@@ -230,6 +234,10 @@ public final class ClientRequestOuterClass {
         getRoomBytes();
   }
   /**
+   * <pre>
+   * Message object that client sends to server.
+   * </pre>
+   *
    * Protobuf type {@code ClientRequest}
    */
   public static final class ClientRequest extends
@@ -592,6 +600,10 @@ public final class ClientRequestOuterClass {
       return builder;
     }
     /**
+     * <pre>
+     * Message object that client sends to server.
+     * </pre>
+     *
      * Protobuf type {@code ClientRequest}
      */
     public static final class Builder extends

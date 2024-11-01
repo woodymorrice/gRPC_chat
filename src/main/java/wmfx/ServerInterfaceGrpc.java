@@ -16,6 +16,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
+ * <pre>
+ * Server gRPC methods. 
+ * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.9.1)",
@@ -180,6 +183,9 @@ public final class ServerInterfaceGrpc {
   }
 
   /**
+   * <pre>
+   * Server gRPC methods. 
+   * </pre>
    */
   public static abstract class ServerInterfaceImplBase implements io.grpc.BindableService {
 
@@ -246,6 +252,9 @@ public final class ServerInterfaceGrpc {
   }
 
   /**
+   * <pre>
+   * Server gRPC methods. 
+   * </pre>
    */
   public static final class ServerInterfaceStub extends io.grpc.stub.AbstractStub<ServerInterfaceStub> {
     private ServerInterfaceStub(io.grpc.Channel channel) {
@@ -297,6 +306,9 @@ public final class ServerInterfaceGrpc {
   }
 
   /**
+   * <pre>
+   * Server gRPC methods. 
+   * </pre>
    */
   public static final class ServerInterfaceBlockingStub extends io.grpc.stub.AbstractStub<ServerInterfaceBlockingStub> {
     private ServerInterfaceBlockingStub(io.grpc.Channel channel) {
@@ -345,6 +357,9 @@ public final class ServerInterfaceGrpc {
   }
 
   /**
+   * <pre>
+   * Server gRPC methods. 
+   * </pre>
    */
   public static final class ServerInterfaceFutureStub extends io.grpc.stub.AbstractStub<ServerInterfaceFutureStub> {
     private ServerInterfaceFutureStub(io.grpc.Channel channel) {

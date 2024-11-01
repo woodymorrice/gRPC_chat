@@ -26,6 +26,10 @@ public final class ServerReplyOuterClass {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   /**
+   * <pre>
+   * * Tags for server replies. 
+   * </pre>
+   *
    * Protobuf enum {@code ReplyType}
    */
   public enum ReplyType
@@ -275,6 +279,10 @@ public final class ServerReplyOuterClass {
         getRoomBytes();
   }
   /**
+   * <pre>
+   * * Message object that server sends to client. 
+   * </pre>
+   *
    * Protobuf type {@code ServerReply}
    */
   public static final class ServerReply extends
@@ -637,6 +645,10 @@ public final class ServerReplyOuterClass {
       return builder;
     }
     /**
+     * <pre>
+     * * Message object that server sends to client. 
+     * </pre>
+     *
      * Protobuf type {@code ServerReply}
      */
     public static final class Builder extends

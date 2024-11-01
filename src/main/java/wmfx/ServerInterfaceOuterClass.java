@@ -42,6 +42,11 @@ public final class ServerInterfaceOuterClass {
         getClientIdBytes();
   }
   /**
+   * <pre>
+   * Message object to package client UUIDs because
+   * all data sent in gRPC needs to be in a message. 
+   * </pre>
+   *
    * Protobuf type {@code ClientRegistration}
    */
   public static final class ClientRegistration extends
@@ -275,6 +280,11 @@ public final class ServerInterfaceOuterClass {
       return builder;
     }
     /**
+     * <pre>
+     * Message object to package client UUIDs because
+     * all data sent in gRPC needs to be in a message. 
+     * </pre>
+     *
      * Protobuf type {@code ClientRegistration}
      */
     public static final class Builder extends

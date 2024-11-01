@@ -24,14 +24,14 @@ services:
       bash -c "
       ./client_delay.sh
       "
-#  client2:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile_client
-#    container_name: client2
-#    stdin_open: true
-#    tty: true
-#    command: >
-#      bash -c "
-#      ./client_delay.sh
-#      "
+  client2:
+    build:
+      context: .
+      dockerfile: Dockerfile_client
+    container_name: client2
+    stdin_open: true
+    tty: true
+    command: >
+      bash -c "
+      ./client_delay.sh
+      "
