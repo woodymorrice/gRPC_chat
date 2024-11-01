@@ -130,7 +130,7 @@ class ReceiveThread extends Thread {
 
     /* Parses replies, which usually means printing
      * some of the contents to the console. */
-    private int parseReply(ServerReplyOuterClass.ServerReply reply) {
+    private void parseReply(ServerReplyOuterClass.ServerReply reply) {
         switch (reply.getType()) {
             case CREATE_SUCCESS:
                 System.out.println(
@@ -196,7 +196,6 @@ class ReceiveThread extends Thread {
                 break;
             default: break;
         }
-        return 0;
     }
 }
 
@@ -213,9 +212,7 @@ class ClientProperties {
         inRoom = false;
     }
     
-    private String generateClientId() {
-        return UUID.randomUUID().toString();
-    }
+    private String generateClientId() { return UUID.randomUUID().toString(); }
     public String getClientId() { return clientId; }
     public synchronized String getRoomName() { return roomName; }
     public synchronized void setRoomName(String s) { roomName = s; }
