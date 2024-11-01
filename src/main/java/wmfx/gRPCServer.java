@@ -12,8 +12,6 @@ public class gRPCServer implements ServerCommunicationInterface {
     ManagedChannel channel;
     ServerInterfaceGrpc.ServerInterfaceBlockingStub stub;
 
-    public gRPCServer() {}
-
     /* Performs necessary initialization and begins
      * listening for connections. */
     public int listenForConnections() {
@@ -31,13 +29,14 @@ public class gRPCServer implements ServerCommunicationInterface {
                 try {
                     server.awaitTermination(); // This blocks
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.out.println(
+                            "server.awaitTermination() failed:"
+                    + e);
                 }
             }).start();
         }
         catch (Exception e) {
-            System.err.println("Error: " + e);
-            e.printStackTrace();
+            System.err.println("Error in listenForConnections(): " + e);
             return -1;
         }
         return 0;

@@ -123,7 +123,6 @@ class ReceiveThread extends Thread {
         while (true) {
             ServerReplyOuterClass.ServerReply reply = cci.getReply();
             if (reply != null) {
-//                System.out.println(reply); // debug
                 parseReply(reply);
             }
         }

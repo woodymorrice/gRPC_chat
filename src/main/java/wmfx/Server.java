@@ -35,10 +35,9 @@ class ServerRunner {
     }
 
     /* Starts the receiver thread. */
-    public int up() {
+    public void up() {
         Runnable receiver = new Receiver();
         exec.execute(receiver);
-        return 0;
     }
 
     /* Gets requests and spawns thread to handle requests. */

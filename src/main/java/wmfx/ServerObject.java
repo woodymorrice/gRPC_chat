@@ -8,13 +8,13 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /* Implements gRPC methods from ServerInterface.
  * NOTE -- queue and dequeue operations are all threadsafe because
- * LinkedBlockingQueues are threadsafe by design. Hashtables are too
+ * LinkedBlockingQueues are threadsafe by design. Hash tables are too,
  * but I wrapped all calls to that in synchronized because I got a
  * warning about it. */
 public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
-    private Hashtable <String, StreamObserver<ServerReplyOuterClass.ServerReply>> clients;
-    private BlockingQueue<ClientRequestOuterClass.ClientRequest> clientRequests;
-    private BlockingQueue<ServerReplyOuterClass.ServerReply> serverReplies;
+    private final Hashtable <String, StreamObserver<ServerReplyOuterClass.ServerReply>> clients;
+    private final BlockingQueue<ClientRequestOuterClass.ClientRequest> clientRequests;
+    private final BlockingQueue<ServerReplyOuterClass.ServerReply> serverReplies;
 
     public ServerObject() {
         super();
@@ -77,7 +77,7 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
 
     /* This is called by queueReply in the current implementation.
      * Sends out replies to clients. */
-    public synchronized int dequeueReply() {
+    public synchronized void dequeueReply() {
         try {
             ServerReplyOuterClass.ServerReply message = serverReplies.take();
             if (Objects.equals(message.getType(), ServerReplyOuterClass.ReplyType.NEW_MSG)) {
@@ -96,14 +96,12 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
         }
         catch (InterruptedException e) {
             System.err.println("Interrupted Exception: " + e);
-            return -1;
         }
-        return 0;
     }
 
     /* Is called by dequeueReply, sends new chat messages to all
      * Clients in the room. */
-    private synchronized int notify(ServerReplyOuterClass.ServerReply message) {
+    private synchronized void notify(ServerReplyOuterClass.ServerReply message) {
         clients.forEach((id, address) -> {
             try {
                 if (!Objects.equals(id, message.getClientId())) {
@@ -115,6 +113,5 @@ public class ServerObject extends ServerInterfaceGrpc.ServerInterfaceImplBase {
                 System.err.println("Remote Exception: " + e);
             }
         });
-        return 0;
     }
 }

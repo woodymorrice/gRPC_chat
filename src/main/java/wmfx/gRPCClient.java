@@ -9,16 +9,14 @@ public class gRPCClient implements ClientCommunicationInterface {
     ManagedChannel channel;
     ServerInterfaceGrpc.ServerInterfaceBlockingStub stub;
     String clientId;
-    Iterator listener;
+    Iterator<ServerReplyOuterClass.ServerReply> listener;
 
     final int RETRY_ATTEMPTS = 3;
     final int RETRY_DELAY_MS = 3000;
 
-    public gRPCClient() {}
-
     /* Performs necessary initialization and establishes
      * connection to the server. */
-    public int establishConnection(String cid) {
+    public void establishConnection(String cid) {
          clientId = cid;
          for (int i = 0; i < RETRY_ATTEMPTS; i++) {
              try {
@@ -43,28 +41,25 @@ public class gRPCClient implements ClientCommunicationInterface {
                  }
                  catch (InterruptedException ie) {
                      System.err.println("Sleep failed: " + e);
-                     return -1;
+                     return;
                  }
              }
          }
-        return 0;
     }
 
     /* Passes messages from Client.java to middleware implementation. */
-    public int sendMessage(ClientRequestOuterClass.ClientRequest message) {
+    public void sendMessage(ClientRequestOuterClass.ClientRequest message) {
          try {
              stub.queueRequest(message);
          }
          catch (Exception e) {
              System.err.println("Error: " + e);
-             return -1;
          }
-        return 0;
     }
 
     /* Gets messages from middleware implementation and passes
      * then to Client.java. */
     public ServerReplyOuterClass.ServerReply getReply() {
-        return (ServerReplyOuterClass.ServerReply) listener.next();
+        return listener.next();
     }  
 }
